@@ -74,7 +74,7 @@ const ja: TranslationKeys = {
   'git.conflict.abort': 'マージを中止',
   'git.conflict.nonOp.title': '.op 以外のファイルによりマージが一時停止しました',
   'git.conflict.nonOp.description':
-    '.op ファイルのマージは完了しましたが、このリポジトリ内の他のファイルがまだ未解決です。OpenPencil の外で解決してから続行してください。',
+    '.op ファイルのマージは完了しましたが、このリポジトリ内の他のファイルがまだ未解決です。MinoPencil の外で解決してから続行してください。',
   'git.conflict.nonOp.unresolvedHeading_one': '1 個のファイルに対応が必要',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} 個のファイルに対応が必要',
   'git.conflict.nonOp.continue': 'マージを続行',
@@ -692,7 +692,7 @@ const ja: TranslationKeys = {
   'agents.port': 'ポート',
   'agents.mcpRestart': 'MCP 連携はターミナルの再起動後に有効になります。',
   'agents.mcpReinstallHint':
-    'OpenPencil のバージョンアップ後、互換性を確保するため MCP 統合を再インストールしてください。',
+    'MinoPencil のバージョンアップ後、互換性を確保するため MCP 統合を再インストールしてください。',
   'agents.modelCount': '{{count}} 個のモデル',
   'agents.connectionFailed': '接続に失敗しました',
   'agents.serverError': 'サーバーエラー {{status}}',
@@ -814,7 +814,7 @@ const ja: TranslationKeys = {
   'figma.tryAgain': '再試行',
   'figma.layoutMode': 'レイアウトモード：',
   'figma.preserveLayout': 'Figma のレイアウトを維持',
-  'figma.autoLayout': 'OpenPencil 自動レイアウト',
+  'figma.autoLayout': 'MinoPencil 自動レイアウト',
   'figma.comingSoon': '近日公開',
 
   // ── Landing Page ──

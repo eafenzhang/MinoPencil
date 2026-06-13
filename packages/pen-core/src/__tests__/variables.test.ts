@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import type { PenNode } from '@zseven-w/pen-types';
-import type { VariableDefinition } from '@zseven-w/pen-types';
+import type { PenNode } from '@minopencil/pen-types';
+import type { VariableDefinition } from '@minopencil/pen-types';
 import {
   isVariableRef,
   getDefaultTheme,

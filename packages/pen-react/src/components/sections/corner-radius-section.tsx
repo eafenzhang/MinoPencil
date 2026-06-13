@@ -1,5 +1,5 @@
 import { NumberInput } from '../number-input.js';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@minopencil/pen-types';
 
 interface CornerRadiusSectionProps {
   cornerRadius?: number | [number, number, number, number];

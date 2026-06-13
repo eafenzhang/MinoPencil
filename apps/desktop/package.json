@@ -1,6 +1,6 @@
 {
-  "name": "@zseven-w/desktop",
-  "version": "0.7.5",
+  "name": "@minopencil/desktop",
+  "version": "0.1.0",
   "private": true,
   "type": "module"
 }

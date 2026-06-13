@@ -1,6 +1,6 @@
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@minopencil/pen-types';
 
-export type { ViewportState } from '@zseven-w/pen-types';
+export type { ViewportState } from '@minopencil/pen-types';
 
 export interface RenderNode {
   node: PenNode;

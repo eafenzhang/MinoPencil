@@ -1,9 +1,9 @@
 import { defineEventHandler, readBody, createError } from 'h3';
 import { getSyncDocument } from '../../../utils/mcp-sync-state';
 import { createPlan } from '../../../utils/codegen-plan-store';
-import { getActivePageChildren } from '@zseven-w/pen-core';
-import type { PenDocument, CodePlanFromAI } from '@zseven-w/pen-types';
-import { openDocument, LIVE_CANVAS_PATH } from '@zseven-w/pen-mcp';
+import { getActivePageChildren } from '@minopencil/pen-core';
+import type { PenDocument, CodePlanFromAI } from '@minopencil/pen-types';
+import { openDocument, LIVE_CANVAS_PATH } from '@minopencil/pen-mcp';
 
 interface PlanBody {
   plan: CodePlanFromAI;

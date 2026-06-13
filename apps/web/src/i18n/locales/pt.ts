@@ -74,7 +74,7 @@ const pt: TranslationKeys = {
   'git.conflict.abort': 'Abortar mesclagem',
   'git.conflict.nonOp.title': 'Mesclagem pausada em arquivos não .op',
   'git.conflict.nonOp.description':
-    'A mesclagem dos arquivos .op foi concluída, mas outros arquivos do repositório ainda não foram resolvidos. Resolva-os fora do OpenPencil e continue.',
+    'A mesclagem dos arquivos .op foi concluída, mas outros arquivos do repositório ainda não foram resolvidos. Resolva-os fora do MinoPencil e continue.',
   'git.conflict.nonOp.unresolvedHeading_one': '1 arquivo precisa de atenção',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} arquivos precisam de atenção',
   'git.conflict.nonOp.continue': 'Continuar mesclagem',
@@ -692,7 +692,7 @@ const pt: TranslationKeys = {
   'agents.port': 'Porta',
   'agents.mcpRestart': 'As integrações MCP entrarão em vigor após reiniciar o terminal.',
   'agents.mcpReinstallHint':
-    'Após atualizar o OpenPencil, reinstale as integrações MCP para garantir a compatibilidade.',
+    'Após atualizar o MinoPencil, reinstale as integrações MCP para garantir a compatibilidade.',
   'agents.modelCount': '{{count}} modelo(s)',
   'agents.connectionFailed': 'Falha na conexão',
   'agents.serverError': 'Erro do servidor {{status}}',
@@ -817,7 +817,7 @@ const pt: TranslationKeys = {
   'figma.tryAgain': 'Tentar novamente',
   'figma.layoutMode': 'Modo de layout:',
   'figma.preserveLayout': 'Preservar layout do Figma',
-  'figma.autoLayout': 'Auto layout do OpenPencil',
+  'figma.autoLayout': 'Auto layout do MinoPencil',
   'figma.comingSoon': 'Em breve',
 
   // ── Landing Page ──

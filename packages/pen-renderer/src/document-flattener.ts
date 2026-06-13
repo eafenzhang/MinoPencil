@@ -1,4 +1,4 @@
-import type { PenNode, ContainerProps, RefNode } from '@zseven-w/pen-types';
+import type { PenNode, ContainerProps, RefNode } from '@minopencil/pen-types';
 import {
   resolvePadding,
   isNodeVisible,
@@ -10,7 +10,7 @@ import {
   defaultLineHeight,
   findNodeInTree,
   cssFontFamily,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
 import { wrapLine } from './paint-utils.js';
 import type { RenderNode } from './types.js';
 

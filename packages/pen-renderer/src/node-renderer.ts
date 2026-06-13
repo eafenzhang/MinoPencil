@@ -8,8 +8,8 @@ import type {
   PathNode,
   ImageNode,
   IconFontNode,
-} from '@zseven-w/pen-types';
-import type { PenFill, PenStroke, PenEffect, ShadowEffect, ImageFill } from '@zseven-w/pen-types';
+} from '@minopencil/pen-types';
+import type { PenFill, PenStroke, PenEffect, ShadowEffect, ImageFill } from '@minopencil/pen-types';
 import {
   DEFAULT_FILL,
   DEFAULT_STROKE,
@@ -18,7 +18,7 @@ import {
   getPathBoundsFromAnchors,
   isArcEllipse,
   pathDataToAnchors,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
 import {
   parseColor,
   cornerRadiusValue,

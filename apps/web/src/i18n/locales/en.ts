@@ -71,7 +71,7 @@ const en = {
   'git.conflict.abort': 'Abort merge',
   'git.conflict.nonOp.title': 'Merge paused on non-.op files',
   'git.conflict.nonOp.description':
-    'The .op merge finished, but other files in this repo are still unresolved. Fix them outside OpenPencil, then continue.',
+    'The .op merge finished, but other files in this repo are still unresolved. Fix them outside MinoPencil, then continue.',
   'git.conflict.nonOp.unresolvedHeading_one': '1 file needs attention',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} files need attention',
   'git.conflict.nonOp.continue': 'Continue merge',
@@ -687,7 +687,7 @@ const en = {
   'agents.port': 'Port',
   'agents.mcpRestart': 'MCP integrations will take effect after restarting the terminal.',
   'agents.mcpReinstallHint':
-    'After upgrading OpenPencil, please reinstall MCP integrations to ensure compatibility.',
+    'After upgrading MinoPencil, please reinstall MCP integrations to ensure compatibility.',
   'agents.modelCount': '{{count}} model(s)',
   'agents.connectionFailed': 'Connection failed',
   'agents.serverError': 'Server error {{status}}',
@@ -808,7 +808,7 @@ const en = {
   'figma.tryAgain': 'Try Again',
   'figma.layoutMode': 'Layout mode:',
   'figma.preserveLayout': 'Preserve Figma layout',
-  'figma.autoLayout': 'OpenPencil auto layout',
+  'figma.autoLayout': 'MinoPencil auto layout',
   'figma.comingSoon': 'Coming soon',
 
   // ── Landing Page ──

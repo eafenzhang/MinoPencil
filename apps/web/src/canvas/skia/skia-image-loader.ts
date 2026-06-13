@@ -1,2 +1,2 @@
-// Re-export from @zseven-w/pen-renderer
-export { SkiaImageLoader } from '@zseven-w/pen-renderer';
+// Re-export from @minopencil/pen-renderer
+export { SkiaImageLoader } from '@minopencil/pen-renderer';

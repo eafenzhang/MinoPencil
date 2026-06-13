@@ -11,7 +11,7 @@ import {
   AlignVerticalJustifyCenter,
   AlignVerticalJustifyEnd,
 } from 'lucide-react';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@minopencil/pen-types';
 
 type TextNode = PenNode & {
   fontFamily?: string;

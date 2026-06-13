@@ -1,4 +1,4 @@
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode } from '@minopencil/pen-types';
 export {
   findNodeInTree,
   findParentInTree,
@@ -8,8 +8,8 @@ export {
   flattenNodes,
   getNodeBounds,
   cloneNodeWithNewIds,
-} from '@zseven-w/pen-core';
-import { getNodeBounds, resolveNodeForCanvas, getDefaultTheme } from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
+import { getNodeBounds, resolveNodeForCanvas, getDefaultTheme } from '@minopencil/pen-core';
 
 // ---------------------------------------------------------------------------
 // MCP-specific utilities

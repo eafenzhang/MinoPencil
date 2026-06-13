@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { PenNode, PenDocument } from '@zseven-w/pen-types';
+import type { PenNode, PenDocument } from '@minopencil/pen-types';
 import {
   createEmptyDocument,
   findNodeInTree,

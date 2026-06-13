@@ -1,13 +1,13 @@
-# @zseven-w/pen-sdk
+# @minopencil/pen-sdk
 
 The umbrella SDK for [OpenPencil](https://github.com/ZSeven-W/openpencil). One import gives you everything — types, document operations, headless engine, React components, code generation, Figma import, and GPU rendering.
 
 ## Install
 
 ```bash
-npm install @zseven-w/pen-sdk
+npm install @minopencil/pen-sdk
 # or
-bun add @zseven-w/pen-sdk
+bun add @minopencil/pen-sdk
 ```
 
 ## Overview
@@ -18,12 +18,12 @@ bun add @zseven-w/pen-sdk
 
 | Package                                     | Provides                                                                            |
 | ------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [`@zseven-w/pen-types`](../pen-types)       | TypeScript types for the document model (`PenDocument`, `PenNode`, `PenFill`, etc.) |
-| [`@zseven-w/pen-core`](../pen-core)         | Tree operations, layout engine, variables, boolean ops, normalization, 3-way merge  |
-| [`@zseven-w/pen-engine`](../pen-engine)     | Headless design engine — document, selection, history, viewport, spatial index      |
-| [`@zseven-w/pen-react`](../pen-react)       | React UI SDK — `DesignProvider`, `DesignCanvas`, 10 hooks, 39 components            |
-| [`@zseven-w/pen-renderer`](../pen-renderer) | CanvasKit/Skia GPU renderer with viewport, hit testing, font/image management       |
-| [`@zseven-w/pen-figma`](../pen-figma)       | Figma `.fig` binary parser and converter                                            |
+| [`@minopencil/pen-types`](../pen-types)       | TypeScript types for the document model (`PenDocument`, `PenNode`, `PenFill`, etc.) |
+| [`@minopencil/pen-core`](../pen-core)         | Tree operations, layout engine, variables, boolean ops, normalization, 3-way merge  |
+| [`@minopencil/pen-engine`](../pen-engine)     | Headless design engine — document, selection, history, viewport, spatial index      |
+| [`@minopencil/pen-react`](../pen-react)       | React UI SDK — `DesignProvider`, `DesignCanvas`, 10 hooks, 39 components            |
+| [`@minopencil/pen-renderer`](../pen-renderer) | CanvasKit/Skia GPU renderer with viewport, hit testing, font/image management       |
+| [`@minopencil/pen-figma`](../pen-figma)       | Figma `.fig` binary parser and converter                                            |
 
 ## Usage
 
@@ -39,7 +39,7 @@ import {
   useDocument,
   useSelection,
   useHistory,
-} from '@zseven-w/pen-sdk';
+} from '@minopencil/pen-sdk';
 
 function Editor() {
   return (
@@ -65,7 +65,7 @@ import {
   flattenNodes,
   normalizePenDocument,
   resolveNodeForCanvas,
-} from '@zseven-w/pen-sdk';
+} from '@minopencil/pen-sdk';
 
 const doc = createEmptyDocument();
 const node = findNodeInTree(doc.children, 'header');
@@ -74,7 +74,7 @@ const node = findNodeInTree(doc.children, 'header');
 ### Headless engine (no React)
 
 ```typescript
-import { DesignEngine } from '@zseven-w/pen-sdk';
+import { DesignEngine } from '@minopencil/pen-sdk';
 
 const engine = new DesignEngine();
 engine.loadDocument(doc);
@@ -93,7 +93,7 @@ import {
   generateVueFromDocument,
   generateSvelteFromDocument,
   generateSwiftUIFromDocument,
-} from '@zseven-w/pen-sdk';
+} from '@minopencil/pen-sdk';
 
 const reactCode = generateReactFromDocument(doc);
 const htmlCode = generateHTMLFromDocument(doc);
@@ -102,7 +102,7 @@ const htmlCode = generateHTMLFromDocument(doc);
 ### Figma import
 
 ```typescript
-import { parseFigFile, figmaAllPagesToPenDocument, isFigmaClipboardHtml } from '@zseven-w/pen-sdk';
+import { parseFigFile, figmaAllPagesToPenDocument, isFigmaClipboardHtml } from '@minopencil/pen-sdk';
 
 const figFile = parseFigFile(buffer);
 const document = figmaAllPagesToPenDocument(figFile);
@@ -111,7 +111,7 @@ const document = figmaAllPagesToPenDocument(figFile);
 ### GPU rendering (headless)
 
 ```typescript
-import { loadCanvasKit, PenRenderer } from '@zseven-w/pen-sdk';
+import { loadCanvasKit, PenRenderer } from '@minopencil/pen-sdk';
 
 await loadCanvasKit();
 const renderer = new PenRenderer(canvas, document);
@@ -124,22 +124,22 @@ For smaller bundles, install only what you need:
 
 ```bash
 # Types only (zero runtime)
-npm install @zseven-w/pen-types
+npm install @minopencil/pen-types
 
 # Document operations (no rendering)
-npm install @zseven-w/pen-core
+npm install @minopencil/pen-core
 
 # Headless engine (no React)
-npm install @zseven-w/pen-engine
+npm install @minopencil/pen-engine
 
 # React components
-npm install @zseven-w/pen-react
+npm install @minopencil/pen-react
 
 # GPU renderer
-npm install @zseven-w/pen-renderer canvaskit-wasm
+npm install @minopencil/pen-renderer canvaskit-wasm
 
 # Figma import
-npm install @zseven-w/pen-figma
+npm install @minopencil/pen-figma
 ```
 
 ## License

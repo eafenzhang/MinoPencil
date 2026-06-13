@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { PageManager } from '../core/page-manager';
-import type { PenDocument } from '@zseven-w/pen-types';
-import { createEmptyDocument, migrateToPages, ensureDocumentNodeIds } from '@zseven-w/pen-core';
+import type { PenDocument } from '@minopencil/pen-types';
+import { createEmptyDocument, migrateToPages, ensureDocumentNodeIds } from '@minopencil/pen-core';
 
 describe('PageManager', () => {
   let pm: PageManager;

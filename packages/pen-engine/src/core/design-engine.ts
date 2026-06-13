@@ -5,7 +5,7 @@ import type {
   DesignEngineOptions,
   DesignEngineEvents,
   VariableDefinition,
-} from '@zseven-w/pen-types';
+} from '@minopencil/pen-types';
 import { TypedEventEmitter } from './event-emitter.js';
 import { HistoryManager } from './history-manager.js';
 import { DocumentManager } from './document-manager.js';
@@ -360,14 +360,6 @@ export class DesignEngine {
       this.addNode(parentId ?? null, node);
     }
     return nodes;
-  }
-
-  importFigma(_buffer: ArrayBuffer): PenDocument {
-    // Dynamic import to avoid bundling pen-figma in headless scenarios
-    // that don't use Figma import.
-    throw new Error(
-      'importFigma requires the pen-figma package. Use: import { parseFigFile, figmaToPenDocument } from "@zseven-w/pen-figma"',
-    );
   }
 
   // ── Events ──

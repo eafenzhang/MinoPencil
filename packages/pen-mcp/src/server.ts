@@ -25,31 +25,7 @@ import {
   VARIABLE_TOOL_NAMES,
   handleVariableToolCall,
 } from './routes/variable-routes';
-import {
-  CODEGEN_TOOL_DEFINITIONS,
-  CODEGEN_TOOL_NAMES,
-  handleCodegenToolCall,
-} from './routes/codegen-routes';
-import {
-  STYLE_GUIDE_TOOL_DEFINITIONS,
-  STYLE_GUIDE_TOOL_NAMES,
-  handleStyleGuideToolCall,
-} from './routes/style-guide-routes';
-import {
-  STYLE_OPS_TOOL_DEFINITIONS,
-  STYLE_OPS_TOOL_NAMES,
-  handleStyleOpsToolCall,
-} from './routes/style-operations-routes';
-import {
-  DEBUG_TOOL_DEFINITIONS,
-  DEBUG_TOOL_NAMES,
-  handleDebugToolCall,
-} from './routes/debug-routes';
-
-const pkg = { name: '@zseven-w/pen-mcp', version: '0.6.0' };
-
-const DEBUG_ENABLED =
-  process.env.OPENPENCIL_DEBUG_TOOLS === '1' || process.argv.includes('--debug');
+const pkg = { name: '@minopencil/pen-mcp', version: '0.1.0' };
 
 /**
  * MCP content block types supported by this server's tool handlers.
@@ -68,10 +44,6 @@ const TOOL_DEFINITIONS = [
   ...NODE_TOOL_DEFINITIONS,
   ...DESIGN_TOOL_DEFINITIONS,
   ...VARIABLE_TOOL_DEFINITIONS,
-  ...CODEGEN_TOOL_DEFINITIONS,
-  ...STYLE_GUIDE_TOOL_DEFINITIONS,
-  ...STYLE_OPS_TOOL_DEFINITIONS,
-  ...(DEBUG_ENABLED ? DEBUG_TOOL_DEFINITIONS : []),
 ];
 
 // --- Tool execution handler ---
@@ -86,10 +58,6 @@ async function handleToolCall(
   if (NODE_TOOL_NAMES.has(name)) return handleNodeToolCall(name, a);
   if (DESIGN_TOOL_NAMES.has(name)) return handleDesignToolCall(name, a);
   if (VARIABLE_TOOL_NAMES.has(name)) return handleVariableToolCall(name, a);
-  if (CODEGEN_TOOL_NAMES.has(name)) return handleCodegenToolCall(name, a);
-  if (STYLE_GUIDE_TOOL_NAMES.has(name)) return handleStyleGuideToolCall(name, a);
-  if (STYLE_OPS_TOOL_NAMES.has(name)) return handleStyleOpsToolCall(name, a);
-  if (DEBUG_ENABLED && DEBUG_TOOL_NAMES.has(name)) return handleDebugToolCall(name, a);
   throw new Error(`Unknown tool: ${name}`);
 }
 
@@ -201,7 +169,7 @@ function startHttpServer(port: number): void {
   });
 
   httpServer.listen(port, '0.0.0.0', () => {
-    console.error(`OpenPencil MCP server listening on http://0.0.0.0:${port}/mcp`);
+    console.error(`MinoPencil MCP server listening on http://0.0.0.0:${port}/mcp`);
   });
 }
 
@@ -222,12 +190,6 @@ function parseArgs(): { stdio: boolean; http: boolean; port: number } {
 
 async function main() {
   const { stdio, http, port } = parseArgs();
-
-  if (DEBUG_ENABLED) {
-    console.error(
-      `[pen-mcp] DEBUG tools enabled — ${DEBUG_TOOL_DEFINITIONS.length} debug tools loaded`,
-    );
-  }
 
   if (stdio && http) {
     // Both: stdio server + HTTP server (per-session)

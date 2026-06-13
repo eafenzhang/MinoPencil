@@ -5,7 +5,7 @@ import { PenTool, Plus } from 'lucide-react';
 export const Route = createFileRoute('/')({
   component: LandingPage,
   head: () => ({
-    meta: [{ title: 'OpenPencil - Design as Code' }],
+    meta: [{ title: 'MinoPencil - Design as Code' }],
   }),
 });
 

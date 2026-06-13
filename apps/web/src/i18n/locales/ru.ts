@@ -74,7 +74,7 @@ const ru: TranslationKeys = {
   'git.conflict.abort': 'Отменить слияние',
   'git.conflict.nonOp.title': 'Слияние приостановлено из-за не-.op файлов',
   'git.conflict.nonOp.description':
-    'Слияние .op файлов завершено, но другие файлы в репозитории ещё не разрешены. Разрешите их вне OpenPencil и продолжите.',
+    'Слияние .op файлов завершено, но другие файлы в репозитории ещё не разрешены. Разрешите их вне MinoPencil и продолжите.',
   'git.conflict.nonOp.unresolvedHeading_one': '1 файл требует внимания',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} файлов требуют внимания',
   'git.conflict.nonOp.continue': 'Продолжить слияние',
@@ -692,7 +692,7 @@ const ru: TranslationKeys = {
   'agents.port': 'Порт',
   'agents.mcpRestart': 'Интеграции MCP вступят в силу после перезапуска терминала.',
   'agents.mcpReinstallHint':
-    'После обновления OpenPencil переустановите интеграции MCP для обеспечения совместимости.',
+    'После обновления MinoPencil переустановите интеграции MCP для обеспечения совместимости.',
   'agents.modelCount': '{{count}} модель(ей)',
   'agents.connectionFailed': 'Ошибка подключения',
   'agents.serverError': 'Ошибка сервера {{status}}',
@@ -814,7 +814,7 @@ const ru: TranslationKeys = {
   'figma.tryAgain': 'Попробовать снова',
   'figma.layoutMode': 'Режим раскладки:',
   'figma.preserveLayout': 'Сохранить раскладку Figma',
-  'figma.autoLayout': 'Авто-раскладка OpenPencil',
+  'figma.autoLayout': 'Авто-раскладка MinoPencil',
   'figma.comingSoon': 'Скоро',
 
   // ── Landing Page ──

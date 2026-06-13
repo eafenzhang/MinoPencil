@@ -1,4 +1,4 @@
-// Re-export from @zseven-w/pen-core — the canonical source
+// Re-export from @minopencil/pen-core — the canonical source
 export {
   type Padding,
   resolvePadding,
@@ -16,4 +16,4 @@ export {
   unwrapFakePhoneMockups,
   stripRedundantSectionFills,
   normalizeStrokeFillSchema,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';

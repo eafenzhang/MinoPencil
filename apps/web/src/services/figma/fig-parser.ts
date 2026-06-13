@@ -1,2 +1,2 @@
-// Re-export from @zseven-w/pen-figma — the canonical source
-export { parseFigFile } from '@zseven-w/pen-figma';
+// Re-export from @minopencil/pen-figma — the canonical source
+export { parseFigFile } from '@minopencil/pen-figma';

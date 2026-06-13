@@ -1,7 +1,7 @@
 /**
- * @zseven-w/pen-sdk — OpenPencil SDK
+ * @minopencil/pen-sdk — MinoPencil SDK
  *
- * High-level API for working with OpenPencil (.op) design files.
+ * High-level API for working with MinoPencil (.op) design files.
  * Combines types, document operations, code generation, and Figma import.
  *
  * @example
@@ -11,7 +11,7 @@
  *   createEmptyDocument,
  *   normalizePenDocument,
  *   parseFigFile,
- * } from '@zseven-w/pen-sdk'
+ * } from '@minopencil/pen-sdk'
  * ```
  */
 
@@ -64,7 +64,7 @@ export type {
   // Theme presets
   ThemePreset,
   ThemePresetFile,
-} from '@zseven-w/pen-types';
+} from '@minopencil/pen-types';
 
 // ── Core: Document operations ──────────────────────────────────────────
 export {
@@ -120,7 +120,7 @@ export {
   type BooleanOpType,
   canBooleanOp,
   executeBooleanOp,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
 
 // ── Codegen types (from pen-types) ──────────────────────────────────────
 export type {
@@ -140,24 +140,8 @@ export type {
   NodeSnapshot,
   ExecutableChunkPayload,
   ResolvedDepContract,
-} from '@zseven-w/pen-types';
-export { FRAMEWORKS } from '@zseven-w/pen-types';
-
-// ── Figma: .fig file import ────────────────────────────────────────────
-export {
-  parseFigFile,
-  figmaToPenDocument,
-  figmaAllPagesToPenDocument,
-  getFigmaPages,
-  figmaNodeChangesToPenNodes,
-  isFigmaClipboardHtml,
-  extractFigmaClipboardData,
-  figmaClipboardToNodes,
-  resolveImageBlobs,
-  setIconLookup,
-  type FigmaDecodedFile,
-  type FigmaImportLayoutMode,
-} from '@zseven-w/pen-figma';
+} from '@minopencil/pen-types';
+export { FRAMEWORKS } from '@minopencil/pen-types';
 
 // ── Engine: Headless design engine ────────────────────────────────────
 export {
@@ -177,10 +161,10 @@ export {
   type DesignEngineEvents,
   type CodePlatform,
   type CodeResult,
-} from '@zseven-w/pen-engine';
+} from '@minopencil/pen-engine';
 
 // ── React: React hooks and components ─────────────────────────────────
-export * from '@zseven-w/pen-react';
+export * from '@minopencil/pen-react';
 
 // ── Renderer: CanvasKit/Skia rendering engine ────────────────────────
 export {
@@ -204,4 +188,4 @@ export {
   type RenderNode,
   type PenRendererOptions,
   type IconLookupFn,
-} from '@zseven-w/pen-renderer';
+} from '@minopencil/pen-renderer';

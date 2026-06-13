@@ -1,2 +1,2 @@
-// Re-export from @zseven-w/pen-renderer
-export { SpatialIndex } from '@zseven-w/pen-renderer';
+// Re-export from @minopencil/pen-renderer
+export { SpatialIndex } from '@minopencil/pen-renderer';

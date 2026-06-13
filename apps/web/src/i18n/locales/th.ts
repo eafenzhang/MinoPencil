@@ -73,7 +73,7 @@ const th: TranslationKeys = {
   'git.conflict.abort': 'ยกเลิกการรวม',
   'git.conflict.nonOp.title': 'การรวมหยุดชั่วคราวที่ไฟล์ที่ไม่ใช่ .op',
   'git.conflict.nonOp.description':
-    'การรวมไฟล์ .op เสร็จแล้ว แต่ไฟล์อื่นในที่เก็บยังไม่ได้แก้ไข แก้ไขนอก OpenPencil แล้วดำเนินการต่อ',
+    'การรวมไฟล์ .op เสร็จแล้ว แต่ไฟล์อื่นในที่เก็บยังไม่ได้แก้ไข แก้ไขนอก MinoPencil แล้วดำเนินการต่อ',
   'git.conflict.nonOp.unresolvedHeading_one': 'ต้องการการแก้ไข 1 ไฟล์',
   'git.conflict.nonOp.unresolvedHeading_other': 'ต้องการการแก้ไข {{count}} ไฟล์',
   'git.conflict.nonOp.continue': 'ดำเนินการรวมต่อ',
@@ -677,7 +677,7 @@ const th: TranslationKeys = {
   'agents.port': 'พอร์ต',
   'agents.mcpRestart': 'การผสานรวม MCP จะมีผลหลังจากรีสตาร์ทเทอร์มินัล',
   'agents.mcpReinstallHint':
-    'หลังจากอัปเกรด OpenPencil กรุณาติดตั้ง MCP Integration ใหม่เพื่อให้แน่ใจว่าเข้ากันได้',
+    'หลังจากอัปเกรด MinoPencil กรุณาติดตั้ง MCP Integration ใหม่เพื่อให้แน่ใจว่าเข้ากันได้',
   'agents.modelCount': '{{count}} โมเดล',
   'agents.connectionFailed': 'การเชื่อมต่อล้มเหลว',
   'agents.serverError': 'ข้อผิดพลาดของเซิร์ฟเวอร์ {{status}}',
@@ -798,7 +798,7 @@ const th: TranslationKeys = {
   'figma.tryAgain': 'ลองอีกครั้ง',
   'figma.layoutMode': 'โหมดเลย์เอาต์:',
   'figma.preserveLayout': 'คงเลย์เอาต์ Figma ไว้',
-  'figma.autoLayout': 'เลย์เอาต์อัตโนมัติ OpenPencil',
+  'figma.autoLayout': 'เลย์เอาต์อัตโนมัติ MinoPencil',
   'figma.comingSoon': 'เร็ว ๆ นี้',
 
   // ── Landing Page ──

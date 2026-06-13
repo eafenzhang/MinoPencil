@@ -74,7 +74,7 @@ const fr: TranslationKeys = {
   'git.conflict.abort': 'Annuler la fusion',
   'git.conflict.nonOp.title': 'Fusion en pause sur des fichiers non .op',
   'git.conflict.nonOp.description':
-    "La fusion des fichiers .op est terminée, mais d'autres fichiers du dépôt ne sont pas résolus. Résolvez-les en dehors d'OpenPencil, puis continuez.",
+    "La fusion des fichiers .op est terminée, mais d'autres fichiers du dépôt ne sont pas résolus. Résolvez-les en dehors d'MinoPencil, puis continuez.",
   'git.conflict.nonOp.unresolvedHeading_one': '1 fichier nécessite une action',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} fichiers nécessitent une action',
   'git.conflict.nonOp.continue': 'Continuer la fusion',
@@ -699,7 +699,7 @@ const fr: TranslationKeys = {
   'agents.port': 'Port',
   'agents.mcpRestart': 'Les intégrations MCP prendront effet après le redémarrage du terminal.',
   'agents.mcpReinstallHint':
-    "Après la mise à jour d'OpenPencil, veuillez réinstaller les intégrations MCP pour assurer la compatibilité.",
+    "Après la mise à jour d'MinoPencil, veuillez réinstaller les intégrations MCP pour assurer la compatibilité.",
   'agents.modelCount': '{{count}} modèle(s)',
   'agents.connectionFailed': 'Échec de la connexion',
   'agents.serverError': 'Erreur serveur {{status}}',
@@ -825,7 +825,7 @@ const fr: TranslationKeys = {
   'figma.tryAgain': 'Réessayer',
   'figma.layoutMode': 'Mode de mise en page :',
   'figma.preserveLayout': 'Conserver la mise en page Figma',
-  'figma.autoLayout': 'Mise en page automatique OpenPencil',
+  'figma.autoLayout': 'Mise en page automatique MinoPencil',
   'figma.comingSoon': 'Bientôt disponible',
 
   // ── Landing Page ──

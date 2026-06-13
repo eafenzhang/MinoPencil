@@ -8,9 +8,9 @@
  * library required.
  */
 
-import type { PenNode, PenDocument } from '@zseven-w/pen-types';
-import { resolveRefs, premeasureTextHeights, flattenToRenderNodes } from '@zseven-w/pen-renderer';
-import { resolveNodeForCanvas, getDefaultTheme } from '@zseven-w/pen-core';
+import type { PenNode, PenDocument } from '@minopencil/pen-types';
+import { resolveRefs, premeasureTextHeights, flattenToRenderNodes } from '@minopencil/pen-renderer';
+import { resolveNodeForCanvas, getDefaultTheme } from '@minopencil/pen-core';
 import { getSkiaEngineRef } from '@/canvas/skia-engine-ref';
 
 export type ImageExportFormat = 'png' | 'jpeg' | 'webp';

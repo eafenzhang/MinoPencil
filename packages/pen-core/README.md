@@ -1,13 +1,13 @@
-# @zseven-w/pen-core
+# @minopencil/pen-core
 
 Core document operations for [OpenPencil](https://github.com/ZSeven-W/openpencil) — tree manipulation, layout engine, design variables, boolean path operations, 3-way merge, and more.
 
 ## Install
 
 ```bash
-npm install @zseven-w/pen-core
+npm install @minopencil/pen-core
 # or
-bun add @zseven-w/pen-core
+bun add @minopencil/pen-core
 ```
 
 ## Overview
@@ -31,7 +31,7 @@ import {
   flattenNodes,
   isDescendantOf,
   getNodeBounds,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
 
 const doc = createEmptyDocument();
 const node = findNodeInTree(doc.children, 'node-id');
@@ -44,7 +44,7 @@ const flat = flattenNodes(doc.children); // all nodes in flat array
 Deep clone nodes with optional ID regeneration:
 
 ```typescript
-import { deepCloneNode, cloneNodeWithNewIds, cloneNodesWithNewIds } from '@zseven-w/pen-core';
+import { deepCloneNode, cloneNodeWithNewIds, cloneNodesWithNewIds } from '@minopencil/pen-core';
 
 const clone = deepCloneNode(node); // preserve IDs
 const fresh = cloneNodeWithNewIds(node); // new IDs for all descendants
@@ -60,7 +60,7 @@ import {
   setActivePageChildren,
   migrateToPages,
   ensureDocumentNodeIds,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
 
 // Migrate a single-page document to multi-page format
 const multiPageDoc = migrateToPages(doc);
@@ -80,7 +80,7 @@ import {
   getNodeWidth,
   getNodeHeight,
   isNodeVisible,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
 
 // Compute absolute positions for all children in a layout container
 const positions = computeLayoutPositions(frame, frame.children);
@@ -101,7 +101,7 @@ import {
   resolveTextContent,
   hasCjkText,
   defaultLineHeight,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
 
 const width = estimateTextWidth('Hello World', 16, 400); // font size, weight
 const height = estimateTextHeight(textNode, containerWidth);
@@ -119,7 +119,7 @@ import {
   resolveNodeForCanvas,
   replaceVariableRefsInTree,
   getDefaultTheme,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
 
 isVariableRef('$primary'); // true
 
@@ -135,7 +135,7 @@ replaceVariableRefsInTree(children, 'old-name', 'new-name');
 Union, subtract, intersect, and exclude paths via Paper.js:
 
 ```typescript
-import { executeBooleanOp, canBooleanOp, BooleanOpType } from '@zseven-w/pen-core';
+import { executeBooleanOp, canBooleanOp, BooleanOpType } from '@minopencil/pen-core';
 
 if (canBooleanOp(selectedNodes)) {
   const result = executeBooleanOp(selectedNodes, BooleanOpType.Union);
@@ -147,7 +147,7 @@ if (canBooleanOp(selectedNodes)) {
 Sanitize and fix documents from external sources (Figma imports, AI generation):
 
 ```typescript
-import { normalizePenDocument } from '@zseven-w/pen-core';
+import { normalizePenDocument } from '@minopencil/pen-core';
 
 const cleaned = normalizePenDocument(rawDoc);
 // Fixes: fill type "color" → "solid", gradient stop position → offset,
@@ -164,7 +164,7 @@ import {
   unwrapFakePhoneMockups,
   stripRedundantSectionFills,
   normalizeStrokeFillSchema,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
 
 // Infer missing layout modes, strip child x/y in layout containers
 normalizeTreeLayout(rootNode);
@@ -175,7 +175,7 @@ normalizeTreeLayout(rootNode);
 Diff and merge document trees for collaborative editing and git integration:
 
 ```typescript
-import { diffDocuments, mergeDocuments } from '@zseven-w/pen-core';
+import { diffDocuments, mergeDocuments } from '@minopencil/pen-core';
 
 // One-direction diff: base → current
 const patches = diffDocuments(base, current);
@@ -196,7 +196,7 @@ import {
   generateDesignMd,
   designMdColorsToVariables,
   extractDesignMdFromDocument,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
 ```
 
 ### Path Anchors
@@ -209,7 +209,7 @@ import {
   pathDataToAnchors,
   getPathBoundsFromAnchors,
   inferPathAnchorPointType,
-} from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
 ```
 
 ## API Reference

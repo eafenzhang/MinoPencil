@@ -3,9 +3,9 @@ import { NumberInput } from '../number-input.js';
 import { SectionHeader } from '../section-header.js';
 import { VariablePicker } from '../variable-picker.js';
 import { Plus, X, Image as ImageIcon } from 'lucide-react';
-import { isVariableRef } from '@zseven-w/pen-core';
-import type { PenNode } from '@zseven-w/pen-types';
-import type { PenFill, GradientStop } from '@zseven-w/pen-types';
+import { isVariableRef } from '@minopencil/pen-core';
+import type { PenNode } from '@minopencil/pen-types';
+import type { PenFill, GradientStop } from '@minopencil/pen-types';
 
 const FILL_TYPE_OPTIONS = [
   { value: 'solid', label: 'Solid' },

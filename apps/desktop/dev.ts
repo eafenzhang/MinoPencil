@@ -192,8 +192,8 @@ async function main(): Promise<void> {
 
   /** Kill the detached MCP server spawned by Nitro (survives Vite teardown). */
   const stopMcpServer = () => {
-    const pidFile = join(tmpdir(), 'openpencil-mcp-server.pid');
-    const portFile = join(tmpdir(), 'openpencil-mcp-server.port');
+    const pidFile = join(tmpdir(), 'minopencil-mcp-server.pid');
+    const portFile = join(tmpdir(), 'minopencil-mcp-server.port');
     try {
       if (existsSync(pidFile)) {
         const pid = parseInt(readFileSync(pidFile, 'utf-8').trim(), 10);
@@ -257,15 +257,15 @@ async function main(): Promise<void> {
     entryPoints: [join(ROOT, 'packages', 'pen-mcp', 'src', 'server.ts')],
     outfile: join(ROOT, 'out', 'mcp-server.cjs'),
     alias: {
-      '@zseven-w/pen-types': join(ROOT, 'packages', 'pen-types', 'src'),
-      '@zseven-w/pen-core': join(ROOT, 'packages', 'pen-core', 'src'),
-      '@zseven-w/pen-figma': join(ROOT, 'packages', 'pen-figma', 'src'),
-      '@zseven-w/pen-renderer': join(ROOT, 'packages', 'pen-renderer', 'src'),
-      '@zseven-w/pen-sdk': join(ROOT, 'packages', 'pen-sdk', 'src'),
-      '@zseven-w/pen-ai-skills': join(ROOT, 'packages', 'pen-ai-skills', 'src'),
-      '@zseven-w/pen-mcp': join(ROOT, 'packages', 'pen-mcp', 'src'),
-      '@zseven-w/pen-engine': join(ROOT, 'packages', 'pen-engine', 'src'),
-      '@zseven-w/pen-react': join(ROOT, 'packages', 'pen-react', 'src'),
+      '@minopencil/pen-types': join(ROOT, 'packages', 'pen-types', 'src'),
+      '@minopencil/pen-core': join(ROOT, 'packages', 'pen-core', 'src'),
+      '@minopencil/pen-figma': join(ROOT, 'packages', 'pen-figma', 'src'),
+      '@minopencil/pen-renderer': join(ROOT, 'packages', 'pen-renderer', 'src'),
+      '@minopencil/pen-sdk': join(ROOT, 'packages', 'pen-sdk', 'src'),
+      '@minopencil/pen-ai-skills': join(ROOT, 'packages', 'pen-ai-skills', 'src'),
+      '@minopencil/pen-mcp': join(ROOT, 'packages', 'pen-mcp', 'src'),
+      '@minopencil/pen-engine': join(ROOT, 'packages', 'pen-engine', 'src'),
+      '@minopencil/pen-react': join(ROOT, 'packages', 'pen-react', 'src'),
     },
     define: { 'import.meta.env': '{}' },
     external: ['canvas', 'paper'],

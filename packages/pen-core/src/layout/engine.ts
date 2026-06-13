@@ -1,5 +1,5 @@
-import type { PenNode, ContainerProps, SizingBehavior, Padding } from '@zseven-w/pen-types';
-export type { Padding } from '@zseven-w/pen-types';
+import type { PenNode, ContainerProps, SizingBehavior, Padding } from '@minopencil/pen-types';
+export type { Padding } from '@minopencil/pen-types';
 import { isOverlayNode } from '../node-helpers.js';
 import {
   parseSizing,
@@ -444,7 +444,7 @@ function normalizeJustifyContent(
  * fall through to the `start` default when they meant something else.
  *
  * `baseline` specifically is treated as `end`:
- *   OpenPencil's layout engine doesn't implement text-baseline
+ *   MinoPencil's layout engine doesn't implement text-baseline
  *   alignment (there's no font-metrics pipeline in the position step).
  *   LLMs routinely emit `alignItems: 'baseline'` from web CSS reflex
  *   for patterns like "big number + small unit" (e.g. "72 BPM"), where

@@ -118,8 +118,8 @@ async function pushDocumentToServer(clientId: string | null) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-openpencil-client-id': clientId ?? 'renderer:unknown',
-      'x-openpencil-body-bytes': String(bodyBytes),
+      'x-minopencil-client-id': clientId ?? 'renderer:unknown',
+      'x-minopencil-body-bytes': String(bodyBytes),
     },
     // Keep smaller requests alive through page transitions and HMR churn.
     ...(bodyBytes <= 60_000 ? { keepalive: true } : {}),

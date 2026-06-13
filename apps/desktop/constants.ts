@@ -3,11 +3,11 @@
  */
 
 // GitHub publish target — used by auto-updater feed URL
-export const GITHUB_OWNER = 'ZSeven-W';
-export const GITHUB_REPO = 'openpencil';
+export const GITHUB_OWNER = 'eafenzhang';
+export const GITHUB_REPO = 'MinoPencil';
 
 // Port file for MCP sync discovery
-export const PORT_FILE_DIR_NAME = '.openpencil';
+export const PORT_FILE_DIR_NAME = '.minopencil';
 export const PORT_FILE_NAME = '.port';
 
 // Dev server

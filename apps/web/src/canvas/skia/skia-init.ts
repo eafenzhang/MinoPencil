@@ -1,2 +1,2 @@
-// Re-export from @zseven-w/pen-renderer
-export { loadCanvasKit, getCanvasKit } from '@zseven-w/pen-renderer';
+// Re-export from @minopencil/pen-renderer
+export { loadCanvasKit, getCanvasKit } from '@minopencil/pen-renderer';

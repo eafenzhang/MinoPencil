@@ -74,7 +74,7 @@ const es: TranslationKeys = {
   'git.conflict.abort': 'Abortar fusión',
   'git.conflict.nonOp.title': 'Fusión pausada en archivos distintos de .op',
   'git.conflict.nonOp.description':
-    'La fusión de .op terminó, pero otros archivos del repositorio siguen sin resolverse. Resuélvelos fuera de OpenPencil y luego continúa.',
+    'La fusión de .op terminó, pero otros archivos del repositorio siguen sin resolverse. Resuélvelos fuera de MinoPencil y luego continúa.',
   'git.conflict.nonOp.unresolvedHeading_one': '1 archivo necesita atención',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} archivos necesitan atención',
   'git.conflict.nonOp.continue': 'Continuar fusión',
@@ -696,7 +696,7 @@ const es: TranslationKeys = {
   'agents.port': 'Puerto',
   'agents.mcpRestart': 'Las integraciones MCP se aplicarán tras reiniciar la terminal.',
   'agents.mcpReinstallHint':
-    'Después de actualizar OpenPencil, reinstale las integraciones MCP para garantizar la compatibilidad.',
+    'Después de actualizar MinoPencil, reinstale las integraciones MCP para garantizar la compatibilidad.',
   'agents.modelCount': '{{count}} modelo(s)',
   'agents.connectionFailed': 'Error de conexión',
   'agents.serverError': 'Error del servidor {{status}}',
@@ -821,7 +821,7 @@ const es: TranslationKeys = {
   'figma.tryAgain': 'Intentar de nuevo',
   'figma.layoutMode': 'Modo de diseño:',
   'figma.preserveLayout': 'Conservar diseño de Figma',
-  'figma.autoLayout': 'Diseño automático OpenPencil',
+  'figma.autoLayout': 'Diseño automático MinoPencil',
   'figma.comingSoon': 'Próximamente',
 
   // ── Landing Page ──

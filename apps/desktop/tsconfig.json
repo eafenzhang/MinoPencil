@@ -10,8 +10,8 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@zseven-w/pen-core": ["../../packages/pen-core/src/index.ts"],
-      "@zseven-w/pen-types": ["../../packages/pen-types/src/index.ts"]
+      "@minopencil/pen-core": ["../../packages/pen-core/src/index.ts"],
+      "@minopencil/pen-types": ["../../packages/pen-types/src/index.ts"]
     }
   },
   "include": ["./**/*.ts"],

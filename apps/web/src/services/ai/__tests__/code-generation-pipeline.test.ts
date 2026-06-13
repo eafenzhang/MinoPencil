@@ -6,8 +6,8 @@ import {
   computeExecutionOrder,
   parseChunkResponse,
 } from '../code-generation-pipeline';
-import type { CodePlanFromAI, PlannedChunk } from '@zseven-w/pen-types';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { CodePlanFromAI, PlannedChunk } from '@minopencil/pen-types';
+import type { PenNode } from '@minopencil/pen-types';
 
 describe('hydratePlan', () => {
   it('maps nodeIds to actual PenNode objects', () => {

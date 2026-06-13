@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 import type { ToolType, ViewportState, SelectionState, CanvasInteraction } from '@/types/canvas';
 import type { PenNode } from '@/types/pen';
-import type { DesignEngine } from '@zseven-w/pen-engine';
+import type { DesignEngine } from '@minopencil/pen-engine';
 import { DEFAULT_PAGE_ID } from '@/stores/document-tree-utils';
 import { appStorage } from '@/utils/app-storage';
 
-const PREFS_KEY = 'openpencil-canvas-preferences';
+const PREFS_KEY = 'minopencil-canvas-preferences';
 
 export type RightPanelTab = 'design' | 'code';
 

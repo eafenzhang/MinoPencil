@@ -9,7 +9,7 @@
 import type { DesignSystem } from './ai-types';
 import type { AIProviderType } from '@/types/agent-settings';
 import { generateCompletion } from './ai-service';
-import { getSkillByName } from '@zseven-w/pen-ai-skills';
+import { getSkillByName } from '@minopencil/pen-ai-skills';
 import { designSystemToPromptContext } from './design-system-generator';
 
 interface CodeGenOptions {

@@ -6,7 +6,7 @@ import { DesignProvider } from '../provider';
 import { useDesignEngine } from '../hooks/use-design-engine';
 
 // Mock DesignEngine
-vi.mock('@zseven-w/pen-engine', () => {
+vi.mock('@minopencil/pen-engine', () => {
   const listeners = new Map<string, Set<(...args: any[]) => void>>();
   let doc = { id: 'default', name: 'Untitled', children: [], pages: [] };
 

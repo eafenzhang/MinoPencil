@@ -1,8 +1,8 @@
-# @zseven-w/pen-mcp
+# @minopencil/pen-mcp
 
 [MCP](https://modelcontextprotocol.io/) server for [OpenPencil](https://github.com/ZSeven-W/openpencil) — enables Claude, GPT, Gemini, and other LLMs to read, create, and modify designs through a standard tool protocol.
 
-> **Note:** `pen-mcp` is shipped as part of the OpenPencil app (desktop + web) and is **not a standalone CLI**. The published package ships TypeScript source against workspace-only dependencies and has no `bin` entry, so `npx @zseven-w/pen-mcp` does not work. Run the server from the OpenPencil monorepo or connect external clients to the HTTP endpoint exposed by a running OpenPencil instance.
+> **Note:** `pen-mcp` is shipped as part of the OpenPencil app (desktop + web) and is **not a standalone CLI**. The published package ships TypeScript source against workspace-only dependencies and has no `bin` entry, so `npx @minopencil/pen-mcp` does not work. Run the server from the OpenPencil monorepo or connect external clients to the HTTP endpoint exposed by a running OpenPencil instance.
 
 ## Overview
 
@@ -138,7 +138,7 @@ When connected to a running OpenPencil desktop app, changes made via MCP tools a
 ## Programmatic Usage
 
 ```typescript
-import { configureMcpHooks, MCP_DEFAULT_PORT } from '@zseven-w/pen-mcp';
+import { configureMcpHooks, MCP_DEFAULT_PORT } from '@minopencil/pen-mcp';
 
 // Configure custom hooks (optional)
 configureMcpHooks({

@@ -1,13 +1,13 @@
-# @zseven-w/pen-ai-skills
+# @minopencil/pen-ai-skills
 
 AI prompt skill engine for [OpenPencil](https://github.com/ZSeven-W/openpencil) — phase-driven prompt loading with intent matching, token budgets, and design memory.
 
 ## Install
 
 ```bash
-npm install @zseven-w/pen-ai-skills
+npm install @minopencil/pen-ai-skills
 # or
-bun add @zseven-w/pen-ai-skills
+bun add @minopencil/pen-ai-skills
 ```
 
 ## Overview
@@ -30,7 +30,7 @@ User message ──► resolveSkills(phase, message, options)
 ## Quick Start
 
 ```typescript
-import { resolveSkills } from '@zseven-w/pen-ai-skills';
+import { resolveSkills } from '@minopencil/pen-ai-skills';
 
 // Generation phase — user wants a landing page
 const ctx = resolveSkills('generation', 'design a SaaS landing page', {
@@ -94,7 +94,7 @@ Track context across multi-turn generation sessions:
 ### Document Context
 
 ```typescript
-import { createDesignContext, contextToPromptString } from '@zseven-w/pen-ai-skills';
+import { createDesignContext, contextToPromptString } from '@minopencil/pen-ai-skills';
 
 const ctx = createDesignContext('/path/to/doc.op');
 // Accumulates: palette, typography, spacing, aesthetic, page structure
@@ -106,7 +106,7 @@ const prompt = contextToPromptString(ctx);
 ### Generation History
 
 ```typescript
-import { createHistoryEntry, getRecentEntries } from '@zseven-w/pen-ai-skills';
+import { createHistoryEntry, getRecentEntries } from '@minopencil/pen-ai-skills';
 
 const entry = createHistoryEntry({
   documentPath: '/path/to/doc.op',
@@ -126,7 +126,7 @@ const recent = getRecentEntries(allEntries, 5);
 Detect common design issues in generated output:
 
 ```typescript
-import { detectAllIssues } from '@zseven-w/pen-ai-skills';
+import { detectAllIssues } from '@minopencil/pen-ai-skills';
 
 const issues = detectAllIssues(document);
 // [{ severity: 'warning', category: 'invisible-container', nodeId: 'frame-7', message: '...' }]
@@ -169,7 +169,7 @@ The Vite plugin auto-compiles skills into a TypeScript registry on save during d
 Parse and apply external style guides:
 
 ```typescript
-import { parseStyleGuideFile, buildStyleMapping } from '@zseven-w/pen-ai-skills';
+import { parseStyleGuideFile, buildStyleMapping } from '@minopencil/pen-ai-skills';
 
 const guide = parseStyleGuideFile(markdownContent);
 const mappings = buildStyleMapping(guide);

@@ -1,4 +1,4 @@
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@minopencil/pen-types';
 
 // ---------------------------------------------------------------------------
 // Sizing parser (shared by layout engine and text height estimation)

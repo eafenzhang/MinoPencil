@@ -73,7 +73,7 @@ const zhTW: TranslationKeys = {
   'git.conflict.abort': '中止合併',
   'git.conflict.nonOp.title': '合併因非 .op 檔案暫停',
   'git.conflict.nonOp.description':
-    '.op 檔案合併已完成,但儲存庫中仍有其他檔案未解決。請在 OpenPencil 之外解決它們,然後繼續。',
+    '.op 檔案合併已完成,但儲存庫中仍有其他檔案未解決。請在 MinoPencil 之外解決它們,然後繼續。',
   'git.conflict.nonOp.unresolvedHeading_one': '1 個檔案需要處理',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} 個檔案需要處理',
   'git.conflict.nonOp.continue': '繼續合併',
@@ -675,7 +675,7 @@ const zhTW: TranslationKeys = {
   'agents.transport': '傳輸方式',
   'agents.port': '連接埠',
   'agents.mcpRestart': 'MCP 整合將在重新啟動終端機後生效。',
-  'agents.mcpReinstallHint': '升級 OpenPencil 版本後，請重新安裝 MCP 整合以確保相容性。',
+  'agents.mcpReinstallHint': '升級 MinoPencil 版本後，請重新安裝 MCP 整合以確保相容性。',
   'agents.modelCount': '{{count}} 個模型',
   'agents.connectionFailed': '連線失敗',
   'agents.serverError': '伺服器錯誤 {{status}}',
@@ -796,7 +796,7 @@ const zhTW: TranslationKeys = {
   'figma.tryAgain': '重試',
   'figma.layoutMode': '佈局模式：',
   'figma.preserveLayout': '保留 Figma 佈局',
-  'figma.autoLayout': 'OpenPencil 自動佈局',
+  'figma.autoLayout': 'MinoPencil 自動佈局',
   'figma.comingSoon': '即將推出',
 
   // ── Landing Page ──

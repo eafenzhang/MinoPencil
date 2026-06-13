@@ -158,7 +158,7 @@ export default function TopBar() {
   useEffect(() => {
     const restore = async () => {
       await initAppStorage();
-      const saved = appStorage.getItem('openpencil-theme');
+      const saved = appStorage.getItem('minopencil-theme');
       if (saved === 'light') {
         document.documentElement.classList.add('light');
         setTheme('light');
@@ -186,7 +186,7 @@ export default function TopBar() {
     }
     setTheme(next);
     syncOverlayColors(next);
-    appStorage.setItem('openpencil-theme', next);
+    appStorage.setItem('minopencil-theme', next);
   }, [theme, syncOverlayColors]);
 
   const toggleFullscreen = useCallback(() => {

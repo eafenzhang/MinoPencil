@@ -1,19 +1,18 @@
 {
-  "name": "@zseven-w/pen-engine",
-  "version": "0.7.5",
-  "description": "Headless design engine for OpenPencil — zero framework dependencies",
-  "homepage": "https://github.com/ZSeven-W/openpencil/tree/main/packages/pen-engine",
+  "name": "@minopencil/pen-engine",
+  "version": "0.1.0",
+  "description": "Headless design engine for MinoPencil — zero framework dependencies",
+  "homepage": "https://github.com/eafenzhang/MinoPencil/tree/main/packages/pen-engine",
   "bugs": {
-    "url": "https://github.com/ZSeven-W/openpencil/issues"
+    "url": "https://github.com/eafenzhang/MinoPencil/issues"
   },
   "license": "MIT",
   "author": {
-    "name": "ZSeven-W",
-    "email": "xkayshen@gmail.com"
+    "name": "MinoPencil contributors"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZSeven-W/openpencil.git",
+    "url": "https://github.com/eafenzhang/MinoPencil.git",
     "directory": "packages/pen-engine"
   },
   "files": [
@@ -34,10 +33,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@zseven-w/pen-core": "workspace:*",
-    "@zseven-w/pen-figma": "workspace:*",
-    "@zseven-w/pen-renderer": "workspace:*",
-    "@zseven-w/pen-types": "workspace:*",
+    "@minopencil/pen-core": "*",
+    "@minopencil/pen-renderer": "*",
+    "@minopencil/pen-types": "*",
     "nanoid": "^5.1.6"
   },
   "devDependencies": {

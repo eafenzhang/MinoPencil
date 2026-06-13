@@ -74,7 +74,7 @@ const id: TranslationKeys = {
   'git.conflict.abort': 'Batalkan merge',
   'git.conflict.nonOp.title': 'Penggabungan dijeda pada file non-.op',
   'git.conflict.nonOp.description':
-    'Penggabungan .op selesai, tetapi file lain di repo masih belum terselesaikan. Selesaikan di luar OpenPencil, lalu lanjutkan.',
+    'Penggabungan .op selesai, tetapi file lain di repo masih belum terselesaikan. Selesaikan di luar MinoPencil, lalu lanjutkan.',
   'git.conflict.nonOp.unresolvedHeading_one': '1 file perlu perhatian',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} file perlu perhatian',
   'git.conflict.nonOp.continue': 'Lanjutkan penggabungan',
@@ -689,7 +689,7 @@ const id: TranslationKeys = {
   'agents.port': 'Port',
   'agents.mcpRestart': 'Integrasi MCP akan berlaku setelah terminal dimulai ulang.',
   'agents.mcpReinstallHint':
-    'Setelah memperbarui OpenPencil, silakan instal ulang integrasi MCP untuk memastikan kompatibilitas.',
+    'Setelah memperbarui MinoPencil, silakan instal ulang integrasi MCP untuk memastikan kompatibilitas.',
   'agents.modelCount': '{{count}} model',
   'agents.connectionFailed': 'Koneksi gagal',
   'agents.serverError': 'Kesalahan server {{status}}',
@@ -811,7 +811,7 @@ const id: TranslationKeys = {
   'figma.tryAgain': 'Coba Lagi',
   'figma.layoutMode': 'Mode tata letak:',
   'figma.preserveLayout': 'Pertahankan tata letak Figma',
-  'figma.autoLayout': 'Tata letak otomatis OpenPencil',
+  'figma.autoLayout': 'Tata letak otomatis MinoPencil',
   'figma.comingSoon': 'Segera hadir',
 
   // ── Landing Page ──

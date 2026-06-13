@@ -1,2 +1,2 @@
-// Re-export from @zseven-w/pen-renderer
-export { sanitizeSvgPath, hasInvalidNumbers, tryManualPathParse } from '@zseven-w/pen-renderer';
+// Re-export from @minopencil/pen-renderer
+export { sanitizeSvgPath, hasInvalidNumbers, tryManualPathParse } from '@minopencil/pen-renderer';

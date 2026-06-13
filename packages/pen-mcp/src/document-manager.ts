@@ -2,8 +2,8 @@ import { readFile, writeFile, access, unlink } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { homedir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { normalizePenDocument } from '@zseven-w/pen-core';
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import { normalizePenDocument } from '@minopencil/pen-core';
+import type { PenDocument, PenNode } from '@minopencil/pen-types';
 import { sanitizeObject } from './utils/sanitize';
 import { PORT_FILE_DIR_NAME, PORT_FILE_NAME } from './constants';
 
@@ -123,14 +123,14 @@ function buildLiveSyncMessage(status: LiveSyncAvailability, port?: number | null
   const portHint = port ? ` (port ${port})` : '';
   switch (status) {
     case 'connected':
-      return `Connected to OpenPencil live canvas${portHint}.`;
+      return `Connected to MinoPencil live canvas${portHint}.`;
     case 'no-document':
-      return `OpenPencil is running${portHint}, but no live document is loaded in the editor yet. Open the editor page and wait for sync.`;
+      return `MinoPencil is running${portHint}, but no live document is loaded in the editor yet. Open the editor page and wait for sync.`;
     case 'unreachable':
-      return `Found an OpenPencil port file${portHint}, but the live sync server is unreachable. Restart OpenPencil and try again.`;
+      return `Found an MinoPencil port file${portHint}, but the live sync server is unreachable. Restart MinoPencil and try again.`;
     case 'missing-port-file':
     default:
-      return 'No running OpenPencil instance found. Start the Electron app or dev server first.';
+      return 'No running MinoPencil instance found. Start the Electron app or dev server first.';
   }
 }
 
@@ -267,8 +267,8 @@ async function pushLiveDocument(doc: PenDocument): Promise<void> {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-openpencil-client-id': 'mcp-server:live-canvas',
-        'x-openpencil-body-bytes': String(bodyBytes),
+        'x-minopencil-client-id': 'mcp-server:live-canvas',
+        'x-minopencil-body-bytes': String(bodyBytes),
       },
       body,
     });

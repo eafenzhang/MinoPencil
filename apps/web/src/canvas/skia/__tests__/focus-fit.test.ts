@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import type { RenderNode } from '@zseven-w/pen-renderer';
+import type { RenderNode } from '@minopencil/pen-renderer';
 
 import { fitSceneBoundsToViewport, getFocusBounds } from '../focus-fit';
 

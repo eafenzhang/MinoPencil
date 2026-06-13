@@ -4,9 +4,9 @@
  * Used when renaming or deleting a variable to keep the tree consistent.
  */
 
-import type { PenNode } from '@zseven-w/pen-types';
-import type { PenFill } from '@zseven-w/pen-types';
-import type { VariableDefinition } from '@zseven-w/pen-types';
+import type { PenNode } from '@minopencil/pen-types';
+import type { PenFill } from '@minopencil/pen-types';
+import type { VariableDefinition } from '@minopencil/pen-types';
 import { resolveVariableRef } from './resolve.js';
 
 /**

@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import type { PenNode, PathNode } from '@zseven-w/pen-types';
+import type { PenNode, PathNode } from '@minopencil/pen-types';
 
 export type BooleanOpType = 'union' | 'subtract' | 'intersect';
 

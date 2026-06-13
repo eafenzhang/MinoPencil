@@ -1,4 +1,4 @@
-// Re-export from @zseven-w/pen-renderer
+// Re-export from @minopencil/pen-renderer
 export {
   viewportMatrix,
   screenToScene,
@@ -6,5 +6,5 @@ export {
   zoomToPoint,
   getViewportBounds,
   isRectInViewport,
-} from '@zseven-w/pen-renderer';
-export type { ViewportState } from '@zseven-w/pen-renderer';
+} from '@minopencil/pen-renderer';
+export type { ViewportState } from '@minopencil/pen-renderer';

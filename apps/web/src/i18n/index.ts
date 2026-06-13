@@ -49,12 +49,12 @@ export async function loadLocale(lang: string): Promise<void> {
 
 // Persist language changes
 i18n.on('languageChanged', (lng) => {
-  appStorage.setItem('openpencil-language', lng);
+  appStorage.setItem('minopencil-language', lng);
 });
 
 /** Detect user language from persisted storage or navigator, after hydration. */
 export async function detectLanguagePostHydration(): Promise<void> {
-  const stored = appStorage.getItem('openpencil-language');
+  const stored = appStorage.getItem('minopencil-language');
   if (stored && SUPPORTED_LANGS.includes(stored)) {
     await loadLocale(stored);
     return;

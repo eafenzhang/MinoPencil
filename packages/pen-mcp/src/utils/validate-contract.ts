@@ -1,4 +1,4 @@
-import type { ChunkResult, ContractValidationResult } from '@zseven-w/pen-types';
+import type { ChunkResult, ContractValidationResult } from '@minopencil/pen-types';
 
 export function validateContract(result: ChunkResult): ContractValidationResult {
   const issues: string[] = [];

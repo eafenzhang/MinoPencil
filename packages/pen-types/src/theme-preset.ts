@@ -9,7 +9,7 @@ export interface ThemePreset {
 }
 
 export interface ThemePresetFile {
-  type: 'openpencil-theme-preset';
+  type: 'minopencil-theme-preset';
   version: '1.0.0';
   name: string;
   themes: Record<string, string[]>;

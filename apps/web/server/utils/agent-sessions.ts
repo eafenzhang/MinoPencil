@@ -4,7 +4,7 @@ import type {
   ProviderHandle,
   ToolRegistryHandle,
   TeamHandle,
-} from '@zseven-w/agent-native';
+} from '@minopencil/agent-native';
 import type { ClientSideConnection } from '@agentclientprotocol/sdk';
 import type { LayoutPhase } from './agent-tool-guard';
 import {
@@ -15,7 +15,7 @@ import {
   destroyProvider,
   abortTeam,
   destroyTeam,
-} from '@zseven-w/agent-native';
+} from '@minopencil/agent-native';
 
 export interface NativeAgentSession {
   type: 'native';
@@ -38,20 +38,7 @@ export interface NativeAgentSession {
   layoutRootId: string | null;
 }
 
-export interface AcpAgentSession {
-  type: 'acp';
-  acpSessionId: string;
-  acpAgentId: string;
-  connection: ClientSideConnection;
-  createdAt: number;
-  lastActivity: number;
-  toolNames: Map<string, string>;
-  toolOwners: Map<string, string>;
-  layoutPhase: LayoutPhase;
-  layoutRootId: string | null;
-}
-
-export type AgentSession = NativeAgentSession | AcpAgentSession;
+export type AgentSession = NativeAgentSession;
 
 /** Create a native session with required defaults. */
 export function createSession(
@@ -104,7 +91,7 @@ export function touchSession(session: Pick<AgentSession, 'lastActivity'>, now = 
 
 /** Idempotent cleanup — nullifies handles after destroying to prevent double-free. */
 export function cleanup(session: AgentSession): void {
-  if (session.type === 'acp') return; // ACP connections managed by acp-connection-manager
+  if ('iter' in session === false) return; // non-native sessions
   if (session.iter) {
     destroyIterator(session.iter);
     session.iter = undefined;

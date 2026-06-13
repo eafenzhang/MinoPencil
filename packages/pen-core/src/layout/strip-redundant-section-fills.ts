@@ -1,4 +1,4 @@
-import type { PenNode, PenFill, SolidFill } from '@zseven-w/pen-types';
+import type { PenNode, PenFill, SolidFill } from '@minopencil/pen-types';
 
 /**
  * Strip redundant "section-level" fills from the direct children of a

@@ -1,6 +1,6 @@
 import { SectionHeader } from '../section-header.js';
 import { Image as ImageIcon } from 'lucide-react';
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@minopencil/pen-types';
 
 type ImageFitMode = 'fill' | 'fit' | 'crop' | 'tile';
 type ImageNode = PenNode & {

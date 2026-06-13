@@ -1,19 +1,19 @@
 {
-  "name": "@zseven-w/pen-react",
-  "version": "0.7.5",
-  "description": "React UI SDK for OpenPencil — hooks, components, and state bridges for pen-engine",
-  "homepage": "https://github.com/ZSeven-W/openpencil/tree/main/packages/pen-react",
+  "name": "@minopencil/pen-react",
+  "version": "0.1.0",
+  "description": "React UI SDK for MinoPencil — hooks, components, and state bridges for pen-engine",
+  "homepage": "https://github.com/MinoPencil contributors/openpencil/tree/main/packages/pen-react",
   "bugs": {
-    "url": "https://github.com/ZSeven-W/openpencil/issues"
+    "url": "https://github.com/MinoPencil contributors/openpencil/issues"
   },
   "license": "MIT",
   "author": {
-    "name": "ZSeven-W",
-    "email": "xkayshen@gmail.com"
+    "name": "MinoPencil contributors",
+    "email": ""
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZSeven-W/openpencil.git",
+    "url": "https://github.com/MinoPencil contributors/openpencil.git",
     "directory": "packages/pen-react"
   },
   "files": [
@@ -30,9 +30,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@zseven-w/pen-core": "workspace:*",
-    "@zseven-w/pen-engine": "workspace:*",
-    "@zseven-w/pen-types": "workspace:*",
+    "@minopencil/pen-core": "*",
+    "@minopencil/pen-engine": "*",
+    "@minopencil/pen-types": "*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.511.0",

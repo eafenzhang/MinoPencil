@@ -1,1 +1,1 @@
-export type { VariableDefinition, VariableValue, ThemedValue } from '@zseven-w/pen-types';
+export type { VariableDefinition, VariableValue, ThemedValue } from '@minopencil/pen-types';

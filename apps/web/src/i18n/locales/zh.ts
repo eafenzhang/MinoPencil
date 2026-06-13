@@ -73,7 +73,7 @@ const zh: TranslationKeys = {
   'git.conflict.abort': '中止合并',
   'git.conflict.nonOp.title': '合并因非 .op 文件暂停',
   'git.conflict.nonOp.description':
-    '.op 文件合并已完成,但仓库中仍有其他文件未解决。请在 OpenPencil 之外解决它们,然后继续。',
+    '.op 文件合并已完成,但仓库中仍有其他文件未解决。请在 MinoPencil 之外解决它们,然后继续。',
   'git.conflict.nonOp.unresolvedHeading_one': '1 个文件需要处理',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} 个文件需要处理',
   'git.conflict.nonOp.continue': '继续合并',
@@ -668,7 +668,7 @@ const zh: TranslationKeys = {
   'agents.transport': '传输方式',
   'agents.port': '端口',
   'agents.mcpRestart': 'MCP 集成将在重启终端后生效。',
-  'agents.mcpReinstallHint': '升级 OpenPencil 版本后，请重新安装 MCP 集成以确保兼容性。',
+  'agents.mcpReinstallHint': '升级 MinoPencil 版本后，请重新安装 MCP 集成以确保兼容性。',
   'agents.modelCount': '{{count}} 个模型',
   'agents.connectionFailed': '连接失败',
   'agents.serverError': '服务器错误 {{status}}',
@@ -789,7 +789,7 @@ const zh: TranslationKeys = {
   'figma.tryAgain': '重试',
   'figma.layoutMode': '布局模式：',
   'figma.preserveLayout': '保留 Figma 布局',
-  'figma.autoLayout': 'OpenPencil 自动布局',
+  'figma.autoLayout': 'MinoPencil 自动布局',
   'figma.comingSoon': '即将推出',
 
   // ── Landing Page ──

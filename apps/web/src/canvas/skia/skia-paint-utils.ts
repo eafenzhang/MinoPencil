@@ -1,4 +1,4 @@
-// Re-export from @zseven-w/pen-renderer
+// Re-export from @minopencil/pen-renderer
 export {
   parseColor,
   cornerRadiusValue,
@@ -8,4 +8,4 @@ export {
   resolveStrokeWidth,
   wrapLine,
   cssFontFamily,
-} from '@zseven-w/pen-renderer';
+} from '@minopencil/pen-renderer';

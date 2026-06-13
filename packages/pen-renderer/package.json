@@ -1,19 +1,19 @@
 {
-  "name": "@zseven-w/pen-renderer",
-  "version": "0.7.5",
-  "description": "Standalone CanvasKit/Skia renderer for OpenPencil (.op) design files",
-  "homepage": "https://github.com/ZSeven-W/openpencil/tree/main/packages/pen-renderer",
+  "name": "@minopencil/pen-renderer",
+  "version": "0.1.0",
+  "description": "Standalone CanvasKit/Skia renderer for MinoPencil (.op) design files",
+  "homepage": "https://github.com/MinoPencil contributors/openpencil/tree/main/packages/pen-renderer",
   "bugs": {
-    "url": "https://github.com/ZSeven-W/openpencil/issues"
+    "url": "https://github.com/MinoPencil contributors/openpencil/issues"
   },
   "license": "MIT",
   "author": {
-    "name": "ZSeven-W",
-    "email": "xkayshen@gmail.com"
+    "name": "MinoPencil contributors",
+    "email": ""
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZSeven-W/openpencil.git",
+    "url": "https://github.com/MinoPencil contributors/openpencil.git",
     "directory": "packages/pen-renderer"
   },
   "files": [
@@ -30,8 +30,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@zseven-w/pen-core": "workspace:*",
-    "@zseven-w/pen-types": "workspace:*",
+    "@minopencil/pen-core": "*",
+    "@minopencil/pen-types": "*",
     "rbush": "^4.0.1"
   },
   "devDependencies": {

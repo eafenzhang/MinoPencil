@@ -45,7 +45,7 @@ const config = defineConfig({
     },
   },
   ssr: {
-    external: ['@zseven-w/agent-native'],
+    external: [],
   },
   assetsInclude: ['**/*.wasm'],
   plugins: [
@@ -59,7 +59,7 @@ const config = defineConfig({
           'jsdom',
           'cssstyle',
           'canvaskit-wasm',
-          '@zseven-w/agent-native',
+          // agent-native removed in MinoPencil
         ],
       },
       serverDir: './server',

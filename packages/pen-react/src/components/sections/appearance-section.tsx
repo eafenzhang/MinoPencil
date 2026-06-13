@@ -1,8 +1,8 @@
 import { NumberInput } from '../number-input.js';
 import { SectionHeader } from '../section-header.js';
 import { VariablePicker } from '../variable-picker.js';
-import { isVariableRef } from '@zseven-w/pen-core';
-import type { PenNode } from '@zseven-w/pen-types';
+import { isVariableRef } from '@minopencil/pen-core';
+import type { PenNode } from '@minopencil/pen-types';
 
 interface AppearanceSectionProps {
   node: PenNode;

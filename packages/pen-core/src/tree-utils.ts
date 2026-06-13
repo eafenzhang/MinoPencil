@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import type { PenDocument, PenNode, PenNodeBase, PenPage, RefNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode, PenNodeBase, PenPage, RefNode } from '@minopencil/pen-types';
 
 export const DEFAULT_FRAME_ID = 'root-frame';
 export const DEFAULT_PAGE_ID = 'page-1';

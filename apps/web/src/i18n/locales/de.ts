@@ -74,7 +74,7 @@ const de: TranslationKeys = {
   'git.conflict.abort': 'Merge abbrechen',
   'git.conflict.nonOp.title': 'Zusammenführung wegen Nicht-.op-Dateien pausiert',
   'git.conflict.nonOp.description':
-    'Die .op-Zusammenführung ist abgeschlossen, aber andere Dateien im Repository sind noch nicht aufgelöst. Beheben Sie sie außerhalb von OpenPencil und fahren Sie dann fort.',
+    'Die .op-Zusammenführung ist abgeschlossen, aber andere Dateien im Repository sind noch nicht aufgelöst. Beheben Sie sie außerhalb von MinoPencil und fahren Sie dann fort.',
   'git.conflict.nonOp.unresolvedHeading_one': '1 Datei benötigt Aufmerksamkeit',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} Dateien benötigen Aufmerksamkeit',
   'git.conflict.nonOp.continue': 'Zusammenführung fortsetzen',
@@ -696,7 +696,7 @@ const de: TranslationKeys = {
   'agents.port': 'Port',
   'agents.mcpRestart': 'MCP-Integrationen werden nach einem Neustart des Terminals wirksam.',
   'agents.mcpReinstallHint':
-    'Bitte installieren Sie die MCP-Integrationen nach einem OpenPencil-Upgrade erneut, um die Kompatibilität sicherzustellen.',
+    'Bitte installieren Sie die MCP-Integrationen nach einem MinoPencil-Upgrade erneut, um die Kompatibilität sicherzustellen.',
   'agents.modelCount': '{{count}} Modell(e)',
   'agents.connectionFailed': 'Verbindung fehlgeschlagen',
   'agents.serverError': 'Serverfehler {{status}}',
@@ -819,7 +819,7 @@ const de: TranslationKeys = {
   'figma.tryAgain': 'Erneut versuchen',
   'figma.layoutMode': 'Layout-Modus:',
   'figma.preserveLayout': 'Figma-Layout beibehalten',
-  'figma.autoLayout': 'OpenPencil Auto-Layout',
+  'figma.autoLayout': 'MinoPencil Auto-Layout',
   'figma.comingSoon': 'Demnächst',
 
   // ── Landing Page ──

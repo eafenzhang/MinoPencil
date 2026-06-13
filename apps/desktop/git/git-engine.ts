@@ -82,8 +82,8 @@ import {
 } from './repo-session';
 import type { AuthCreds, AuthStore } from './auth-store';
 import type { SshKeyManager } from './ssh-keys';
-import { diffDocuments, mergeDocuments, type NodePatch } from '@zseven-w/pen-core';
-import type { PenDocument } from '@zseven-w/pen-types';
+import { diffDocuments, mergeDocuments, type NodePatch } from '@minopencil/pen-core';
+import type { PenDocument } from '@minopencil/pen-types';
 import { runMerge, applyResolutions } from './merge-orchestrator';
 import { buildConflictBag, type ConflictBag, type ConflictResolution } from './merge-session';
 

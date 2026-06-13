@@ -1,6 +1,6 @@
-import type { PenDocument } from '@zseven-w/pen-types';
-import type { VariableDefinition } from '@zseven-w/pen-types';
-import { getDefaultTheme, resolveVariableRef, replaceVariableRefsInTree } from '@zseven-w/pen-core';
+import type { PenDocument } from '@minopencil/pen-types';
+import type { VariableDefinition } from '@minopencil/pen-types';
+import { getDefaultTheme, resolveVariableRef, replaceVariableRefsInTree } from '@minopencil/pen-core';
 
 export interface VariableManagerOptions {
   getDocument: () => PenDocument;

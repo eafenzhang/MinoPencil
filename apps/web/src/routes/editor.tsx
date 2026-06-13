@@ -7,7 +7,7 @@ export const Route = createFileRoute('/editor')({
   component: EditorPage,
   ssr: false,
   head: () => ({
-    meta: [{ title: 'OpenPencil Editor' }],
+    meta: [{ title: 'MinoPencil Editor' }],
   }),
 });
 

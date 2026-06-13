@@ -11,9 +11,9 @@ import type {
   NodeSnapshot,
   CodeGenProgress,
   PenNode,
-} from '@zseven-w/pen-types';
+} from '@minopencil/pen-types';
 import { randomUUID } from 'node:crypto';
-import { validateContract } from '@zseven-w/pen-mcp';
+import { validateContract } from '@minopencil/pen-mcp';
 
 // --- Internal state ---
 

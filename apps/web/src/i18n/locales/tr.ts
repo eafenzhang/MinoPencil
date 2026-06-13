@@ -74,7 +74,7 @@ const tr: TranslationKeys = {
   'git.conflict.abort': 'Birleştirmeyi iptal et',
   'git.conflict.nonOp.title': '.op olmayan dosyalar nedeniyle birleştirme duraklatıldı',
   'git.conflict.nonOp.description':
-    '.op birleştirmesi tamamlandı, ancak depodaki diğer dosyalar hâlâ çözülmedi. OpenPencil dışında çözün, ardından devam edin.',
+    '.op birleştirmesi tamamlandı, ancak depodaki diğer dosyalar hâlâ çözülmedi. MinoPencil dışında çözün, ardından devam edin.',
   'git.conflict.nonOp.unresolvedHeading_one': '1 dosya ilgilenmeyi bekliyor',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} dosya ilgilenmeyi bekliyor',
   'git.conflict.nonOp.continue': 'Birleştirmeye devam et',
@@ -693,7 +693,7 @@ const tr: TranslationKeys = {
   'agents.port': 'Port',
   'agents.mcpRestart': 'MCP entegrasyonları terminal yeniden başlatıldıktan sonra etkin olacaktır.',
   'agents.mcpReinstallHint':
-    "OpenPencil'i yükselttikten sonra uyumluluğu sağlamak için MCP entegrasyonlarını yeniden yükleyin.",
+    "MinoPencil'i yükselttikten sonra uyumluluğu sağlamak için MCP entegrasyonlarını yeniden yükleyin.",
   'agents.modelCount': '{{count}} model',
   'agents.connectionFailed': 'Bağlantı başarısız',
   'agents.serverError': 'Sunucu hatası {{status}}',
@@ -815,7 +815,7 @@ const tr: TranslationKeys = {
   'figma.tryAgain': 'Tekrar Dene',
   'figma.layoutMode': 'Düzen modu:',
   'figma.preserveLayout': 'Figma düzenini koru',
-  'figma.autoLayout': 'OpenPencil otomatik düzen',
+  'figma.autoLayout': 'MinoPencil otomatik düzen',
   'figma.comingSoon': 'Yakında',
 
   // ── Landing Page ──

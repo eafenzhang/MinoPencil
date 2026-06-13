@@ -73,7 +73,7 @@ const ko: TranslationKeys = {
   'git.conflict.abort': '병합 중단',
   'git.conflict.nonOp.title': '.op 이외 파일로 병합이 일시 중지됨',
   'git.conflict.nonOp.description':
-    '.op 파일 병합은 완료되었지만 저장소의 다른 파일이 아직 해결되지 않았습니다. OpenPencil 외부에서 해결한 후 계속하세요.',
+    '.op 파일 병합은 완료되었지만 저장소의 다른 파일이 아직 해결되지 않았습니다. MinoPencil 외부에서 해결한 후 계속하세요.',
   'git.conflict.nonOp.unresolvedHeading_one': '1개 파일에 조치가 필요함',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}}개 파일에 조치가 필요함',
   'git.conflict.nonOp.continue': '병합 계속',
@@ -685,7 +685,7 @@ const ko: TranslationKeys = {
   'agents.port': '포트',
   'agents.mcpRestart': 'MCP 연동은 터미널을 재시작한 후 적용됩니다.',
   'agents.mcpReinstallHint':
-    'OpenPencil 버전 업그레이드 후 호환성을 위해 MCP 통합을 다시 설치해 주세요.',
+    'MinoPencil 버전 업그레이드 후 호환성을 위해 MCP 통합을 다시 설치해 주세요.',
   'agents.modelCount': '모델 {{count}}개',
   'agents.connectionFailed': '연결 실패',
   'agents.serverError': '서버 오류 {{status}}',
@@ -806,7 +806,7 @@ const ko: TranslationKeys = {
   'figma.tryAgain': '다시 시도',
   'figma.layoutMode': '레이아웃 모드:',
   'figma.preserveLayout': 'Figma 레이아웃 유지',
-  'figma.autoLayout': 'OpenPencil 자동 레이아웃',
+  'figma.autoLayout': 'MinoPencil 자동 레이아웃',
   'figma.comingSoon': '출시 예정',
 
   // ── Landing Page ──

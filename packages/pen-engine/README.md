@@ -1,13 +1,13 @@
-# @zseven-w/pen-engine
+# @minopencil/pen-engine
 
 Headless design engine for [OpenPencil](https://github.com/ZSeven-W/openpencil) — framework-free document management, selection, history, viewport, and spatial queries. Build your own design tool UI on top of this engine.
 
 ## Install
 
 ```bash
-npm install @zseven-w/pen-engine
+npm install @minopencil/pen-engine
 # or
-bun add @zseven-w/pen-engine
+bun add @minopencil/pen-engine
 ```
 
 ## Overview
@@ -29,7 +29,7 @@ DesignEngine
 ## Quick Start
 
 ```typescript
-import { DesignEngine } from '@zseven-w/pen-engine';
+import { DesignEngine } from '@minopencil/pen-engine';
 
 const engine = new DesignEngine();
 
@@ -140,7 +140,7 @@ engine.resolveVariable('$primary'); // '#2563EB'
 Isomorphic SVG parser (DOM in browser, regex fallback in Node.js):
 
 ```typescript
-import { parseSvgToNodes } from '@zseven-w/pen-engine';
+import { parseSvgToNodes } from '@minopencil/pen-engine';
 
 const nodes = parseSvgToNodes(svgString, 400);
 engine.addNode(null, nodes[0]);
@@ -165,10 +165,10 @@ unsub(); // unsubscribe
 
 ### Browser Canvas (Optional)
 
-GPU-accelerated rendering via CanvasKit/Skia — import from `@zseven-w/pen-engine/browser`:
+GPU-accelerated rendering via CanvasKit/Skia — import from `@minopencil/pen-engine/browser`:
 
 ```typescript
-import { attachCanvas, attachInteraction } from '@zseven-w/pen-engine/browser';
+import { attachCanvas, attachInteraction } from '@minopencil/pen-engine/browser';
 
 const binding = await attachCanvas(engine, canvasElement);
 const detach = attachInteraction(engine, canvasElement);

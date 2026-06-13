@@ -13,7 +13,7 @@ import { MCP_DEFAULT_PORT } from '@/constants/app';
 import { canonicalizeBuiltinProviderConfig } from '@/lib/builtin-provider-presets';
 import { appStorage } from '@/utils/app-storage';
 
-const STORAGE_KEY = 'openpencil-agent-settings';
+const STORAGE_KEY = 'minopencil-agent-settings';
 
 export type BuiltinProviderPreset =
   | 'anthropic'

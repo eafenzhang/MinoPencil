@@ -1,8 +1,8 @@
 import { defineEventHandler, readBody, createError } from 'h3';
 import { getSyncDocument } from '../../utils/mcp-sync-state';
-import type { PenDocument, PenNode, NodeSnapshot } from '@zseven-w/pen-types';
-import { findNodeInTree, getActivePageChildren } from '@zseven-w/pen-core';
-import { openDocument, LIVE_CANVAS_PATH, readNodeWithDepth } from '@zseven-w/pen-mcp';
+import type { PenDocument, PenNode, NodeSnapshot } from '@minopencil/pen-types';
+import { findNodeInTree, getActivePageChildren } from '@minopencil/pen-core';
+import { openDocument, LIVE_CANVAS_PATH, readNodeWithDepth } from '@minopencil/pen-mcp';
 
 async function resolveDocument(filePath?: string): Promise<PenDocument> {
   if (filePath && filePath !== LIVE_CANVAS_PATH) {

@@ -73,7 +73,7 @@ const hi: TranslationKeys = {
   'git.conflict.abort': 'विलय रद्द करें',
   'git.conflict.nonOp.title': '.op से भिन्न फ़ाइलों पर विलय रोका गया',
   'git.conflict.nonOp.description':
-    '.op विलय पूरा हो गया है, लेकिन रेपो की अन्य फ़ाइलें अभी भी अनसुलझी हैं। उन्हें OpenPencil के बाहर हल करें, फिर जारी रखें।',
+    '.op विलय पूरा हो गया है, लेकिन रेपो की अन्य फ़ाइलें अभी भी अनसुलझी हैं। उन्हें MinoPencil के बाहर हल करें, फिर जारी रखें।',
   'git.conflict.nonOp.unresolvedHeading_one': '1 फ़ाइल को ध्यान चाहिए',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} फ़ाइलों को ध्यान चाहिए',
   'git.conflict.nonOp.continue': 'विलय जारी रखें',
@@ -681,7 +681,7 @@ const hi: TranslationKeys = {
   'agents.port': 'पोर्ट',
   'agents.mcpRestart': 'MCP इंटीग्रेशन टर्मिनल पुनः आरंभ करने के बाद प्रभावी होंगे।',
   'agents.mcpReinstallHint':
-    'OpenPencil अपग्रेड करने के बाद, संगतता सुनिश्चित करने के लिए कृपया MCP इंटीग्रेशन पुनः इंस्टॉल करें।',
+    'MinoPencil अपग्रेड करने के बाद, संगतता सुनिश्चित करने के लिए कृपया MCP इंटीग्रेशन पुनः इंस्टॉल करें।',
   'agents.modelCount': '{{count}} मॉडल',
   'agents.connectionFailed': 'कनेक्शन विफल',
   'agents.serverError': 'सर्वर त्रुटि {{status}}',
@@ -802,7 +802,7 @@ const hi: TranslationKeys = {
   'figma.tryAgain': 'पुनः प्रयास करें',
   'figma.layoutMode': 'लेआउट मोड:',
   'figma.preserveLayout': 'Figma लेआउट संरक्षित करें',
-  'figma.autoLayout': 'OpenPencil ऑटो लेआउट',
+  'figma.autoLayout': 'MinoPencil ऑटो लेआउट',
   'figma.comingSoon': 'जल्द आ रहा है',
 
   // ── Landing Page ──

@@ -114,7 +114,7 @@ async function pickFileSystemAccess(): Promise<PenDocument | null> {
     ).showOpenFilePicker({
       types: [
         {
-          description: 'OpenPencil File',
+          description: 'MinoPencil File',
           accept: { 'application/json': ['.op', '.pen', '.json'] },
         },
       ],

@@ -1,1 +1,1 @@
-export { generateId } from '@zseven-w/pen-core';
+export { generateId } from '@minopencil/pen-core';

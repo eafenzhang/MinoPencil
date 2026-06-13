@@ -73,7 +73,7 @@ const vi: TranslationKeys = {
   'git.conflict.abort': 'Hủy hợp nhất',
   'git.conflict.nonOp.title': 'Gộp tạm dừng ở các tệp không phải .op',
   'git.conflict.nonOp.description':
-    'Gộp .op đã hoàn tất, nhưng các tệp khác trong kho vẫn chưa được giải quyết. Giải quyết chúng bên ngoài OpenPencil, sau đó tiếp tục.',
+    'Gộp .op đã hoàn tất, nhưng các tệp khác trong kho vẫn chưa được giải quyết. Giải quyết chúng bên ngoài MinoPencil, sau đó tiếp tục.',
   'git.conflict.nonOp.unresolvedHeading_one': '1 tệp cần xử lý',
   'git.conflict.nonOp.unresolvedHeading_other': '{{count}} tệp cần xử lý',
   'git.conflict.nonOp.continue': 'Tiếp tục gộp',
@@ -686,7 +686,7 @@ const vi: TranslationKeys = {
   'agents.port': 'Cổng',
   'agents.mcpRestart': 'Các tích hợp MCP sẽ có hiệu lực sau khi khởi động lại terminal.',
   'agents.mcpReinstallHint':
-    'Sau khi nâng cấp OpenPencil, vui lòng cài đặt lại tích hợp MCP để đảm bảo tương thích.',
+    'Sau khi nâng cấp MinoPencil, vui lòng cài đặt lại tích hợp MCP để đảm bảo tương thích.',
   'agents.modelCount': '{{count}} mô hình',
   'agents.connectionFailed': 'Kết nối thất bại',
   'agents.serverError': 'Lỗi máy chủ {{status}}',
@@ -808,7 +808,7 @@ const vi: TranslationKeys = {
   'figma.tryAgain': 'Thử lại',
   'figma.layoutMode': 'Chế độ bố cục:',
   'figma.preserveLayout': 'Giữ nguyên bố cục Figma',
-  'figma.autoLayout': 'Bố cục tự động OpenPencil',
+  'figma.autoLayout': 'Bố cục tự động MinoPencil',
   'figma.comingSoon': 'Sắp ra mắt',
 
   // ── Landing Page ──

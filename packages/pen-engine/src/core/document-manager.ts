@@ -1,4 +1,4 @@
-import type { PenDocument, PenNode } from '@zseven-w/pen-types';
+import type { PenDocument, PenNode } from '@minopencil/pen-types';
 import {
   createEmptyDocument,
   findNodeInTree,
@@ -15,8 +15,8 @@ import {
   migrateToPages,
   ensureDocumentNodeIds,
   cloneNodeWithNewIds,
-} from '@zseven-w/pen-core';
-import { generateId } from '@zseven-w/pen-core';
+} from '@minopencil/pen-core';
+import { generateId } from '@minopencil/pen-core';
 import type { HistoryManager } from './history-manager.js';
 
 export interface DocumentManagerOptions {

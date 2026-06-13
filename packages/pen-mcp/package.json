@@ -1,19 +1,19 @@
 {
-  "name": "@zseven-w/pen-mcp",
-  "version": "0.7.5",
-  "description": "MCP server, document manager, and tools for OpenPencil",
-  "homepage": "https://github.com/ZSeven-W/openpencil/tree/main/packages/pen-mcp",
+  "name": "@minopencil/pen-mcp",
+  "version": "0.1.0",
+  "description": "MCP server, document manager, and tools for MinoPencil",
+  "homepage": "https://github.com/MinoPencil contributors/openpencil/tree/main/packages/pen-mcp",
   "bugs": {
-    "url": "https://github.com/ZSeven-W/openpencil/issues"
+    "url": "https://github.com/MinoPencil contributors/openpencil/issues"
   },
   "license": "MIT",
   "author": {
-    "name": "ZSeven-W",
-    "email": "xkayshen@gmail.com"
+    "name": "MinoPencil contributors",
+    "email": ""
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZSeven-W/openpencil.git",
+    "url": "https://github.com/MinoPencil contributors/openpencil.git",
     "directory": "packages/pen-mcp"
   },
   "files": [
@@ -33,10 +33,10 @@
     "@iconify-json/feather": "^1.2.1",
     "@iconify-json/lucide": "^1.2.93",
     "@modelcontextprotocol/sdk": "^1.12.1",
-    "@zseven-w/pen-ai-skills": "workspace:*",
-    "@zseven-w/pen-core": "workspace:*",
-    "@zseven-w/pen-engine": "workspace:*",
-    "@zseven-w/pen-types": "workspace:*",
+    "@minopencil/pen-ai-skills": "*",
+    "@minopencil/pen-core": "*",
+    "@minopencil/pen-engine": "*",
+    "@minopencil/pen-types": "*",
     "nanoid": "^5.1.6"
   },
   "devDependencies": {

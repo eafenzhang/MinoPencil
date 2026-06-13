@@ -1,6 +1,6 @@
 // apps/web/src/services/ai/code-generation-pipeline.ts
 
-import type { PenNode } from '@zseven-w/pen-types';
+import type { PenNode } from '@minopencil/pen-types';
 import type {
   Framework,
   CodePlanFromAI,
@@ -12,8 +12,8 @@ import type {
   ChunkStatus,
   CodeGenProgress,
   ContractValidationResult,
-} from '@zseven-w/pen-types';
-import { sanitizeName } from '@zseven-w/pen-core';
+} from '@minopencil/pen-types';
+import { sanitizeName } from '@minopencil/pen-core';
 import { buildPlanningPrompt, buildChunkPrompt, buildAssemblyPrompt } from './codegen-prompts';
 import { streamChat } from './ai-service';
 import {
@@ -23,7 +23,7 @@ import {
   type CodegenAssetHint,
 } from './codegen-assets';
 
-// Inlined to avoid importing from @zseven-w/pen-mcp, which transitively pulls
+// Inlined to avoid importing from @minopencil/pen-mcp, which transitively pulls
 // node:fs/promises via document-manager and breaks Vite browser builds.
 function validateContract(result: ChunkResult): ContractValidationResult {
   const issues: string[] = [];

@@ -5,7 +5,59 @@ import { nodeTreeToSummary } from '@minopencil/pen-core';
 import type { CodegenAssetHint } from './codegen-assets';
 
 function loadSkill(name: string): string {
-  return getSkillByName(name)?.content ?? '';
+  const skill = getSkillByName(name)?.content;
+  if (skill) return skill;
+
+  // Fallback prompts for skills removed during MinoPencil fork
+  const FALLBACKS: Record<string, string> = {
+    'codegen-planning': `You are a code generation planner. Analyze the node tree and output a JSON plan.
+
+Output format:
+{
+  "chunks": [
+    {
+      "id": "chunk-1",
+      "componentName": "ComponentName",
+      "description": "What this component does",
+      "dependencies": [],
+      "contract": {
+        "exportedProps": [{"name": "propName", "type": "string"}],
+        "slots": [{"name": "children", "type": "react-node"}]
+      }
+    }
+  ],
+  "rootLayout": "<main><Header/><Content/><Footer/></main>",
+  "sharedStyles": []
+}
+
+CRITICAL:
+- "chunks" MUST be a non-empty array
+- "rootLayout" MUST be a JSX-like string showing the component tree
+- Each chunk MUST have id, componentName, description, dependencies, contract
+- Output ONLY valid JSON. No markdown, no explanation.`,
+    'codegen-chunk': `Generate a single React component based on the design node tree. Use Tailwind CSS classes for styling.
+
+Output ONLY valid JSX/TSX code for the component. Include:
+- Import statements for dependencies
+- The component function with proper props interface
+- Tailwind CSS classes for all styling
+- Proper TypeScript types
+- No external CSS files (use Tailwind only)`,
+    'codegen-assembly': `Assemble the generated chunks into a complete page. Import all chunk components and compose them in the root layout.
+
+Output a single TSX file that:
+- Imports all chunk components
+- Composes them using the rootLayout structure
+- Wraps in necessary providers (ThemeProvider, etc.)
+- Exports the Page component as default`,
+  };
+
+  // Framework-specific codegen skills also removed — provide generic Tailwind/React fallback
+  if (name.startsWith('codegen-') && !FALLBACKS[name]) {
+    return `Generate a ${name.replace('codegen-', '')} component based on the design node tree. Use Tailwind CSS for styling. Output valid TSX code only.`;
+  }
+
+  return '';
 }
 
 /**

@@ -584,7 +584,7 @@ export function useChatHandlers() {
           }));
           chatMessages.push({ role: 'user', content: fullUserMessage });
 
-          const provider = bp.type === 'anthropic' ? 'anthropic' : 'openai-compat';
+          const provider = 'builtin';
           const sysPrompt = buildChatSystemPrompt(fullUserMessage);
 
           for await (const chunk of streamChat(

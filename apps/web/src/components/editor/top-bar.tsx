@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useRef, useMemo } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { appStorage, initAppStorage } from '@/utils/app-storage';
 import type { ComponentType, SVGProps } from 'react';
 import {
@@ -382,12 +382,23 @@ export default function TopBar() {
           />
         </div>
 
-        {/* Editable file name */}
-        <FileNameEditor
-          displayName={displayName}
-          isDirty={isDirty}
-          saveIndicator={saveIndicator}
-        />
+        {/* File name */}
+        <div className="flex items-center gap-1.5 min-w-0">
+          <span className="truncate text-xs leading-none text-foreground max-w-[200px]" suppressHydrationWarning>
+            {displayName}
+          </span>
+          {isDirty && (
+            <span className="text-xs leading-none text-muted-foreground">{t('topbar.edited')}</span>
+          )}
+          {saveIndicator && (
+            <span className="text-[10px] leading-none text-emerald-500 animate-pulse">
+              {t('fileMenu.saved')}
+            </span>
+          )}
+          <div className="app-region-no-drag flex items-center">
+            <GitButton />
+          </div>
+        </div>
 
       </div>
 
@@ -446,84 +457,3 @@ export default function TopBar() {
   );
 }
 
-/** Inline editable file name — click to rename. */
-function FileNameEditor({ displayName, isDirty, saveIndicator }: {
-  displayName: string;
-  isDirty: boolean;
-  saveIndicator: boolean;
-}) {
-  const { t } = useTranslation();
-  const [editing, setEditing] = useState(false);
-  const [editValue, setEditValue] = useState(displayName);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (editing && inputRef.current) {
-      inputRef.current.focus();
-      inputRef.current.select();
-    }
-  }, [editing]);
-
-  useEffect(() => {
-    setEditValue(displayName);
-  }, [displayName]);
-
-  const handleStartEdit = useCallback(() => {
-    setEditing(true);
-    setEditValue(displayName);
-  }, [displayName]);
-
-  const handleFinishEdit = useCallback(() => {
-    setEditing(false);
-    const trimmed = editValue.trim();
-    if (trimmed && trimmed !== displayName) {
-      useDocumentStore.setState({ fileName: trimmed });
-    }
-  }, [editValue, displayName]);
-
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      (e.target as HTMLInputElement).blur();
-    }
-    if (e.key === 'Escape') {
-      setEditValue(displayName);
-      setEditing(false);
-    }
-  }, [displayName]);
-
-  if (editing) {
-    return (
-      <div className="flex items-center gap-1.5 min-w-0">
-        <input
-          ref={inputRef}
-          value={editValue}
-          onChange={(e) => setEditValue(e.target.value)}
-          onBlur={handleFinishEdit}
-          onKeyDown={handleKeyDown}
-          className="h-6 px-1.5 text-xs bg-secondary/40 border border-border rounded outline-none text-foreground min-w-[80px] max-w-[200px]"
-        />
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex items-center gap-1.5 min-w-0 cursor-text" onDoubleClick={handleStartEdit}>
-      <span
-        className="truncate text-xs leading-none text-foreground max-w-[200px]"
-        suppressHydrationWarning
-        onClick={handleStartEdit}
-        title={t('topbar.clickToRename', 'Click to rename')}
-      >
-        {displayName}
-      </span>
-      {isDirty && (
-        <span className="text-xs leading-none text-muted-foreground">{t('topbar.edited')}</span>
-      )}
-      {saveIndicator && (
-        <span className="text-[10px] leading-none text-emerald-500 animate-pulse">
-          {t('fileMenu.saved')}
-        </span>
-      )}
-    </div>
-  );
-}

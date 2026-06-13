@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Search, Terminal, Check, Loader2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -18,11 +17,9 @@ interface ProviderSuggestion {
 }
 
 /**
- * CLI Detection card — calls the server-side CLI scanner and
- * shows detected Agent CLIs with provider suggestions.
+ * CLI 检测面板 — 调用服务端扫描器，显示检测到的 Agent CLI 并推荐供应商配置。
  */
 export function CliDetectionSection() {
-  const { t } = useTranslation();
   const [scanning, setScanning] = useState(false);
   const [clis, setClis] = useState<DetectedCLI[]>([]);
   const [suggestions, setSuggestions] = useState<ProviderSuggestion[]>([]);
@@ -32,6 +29,8 @@ export function CliDetectionSection() {
   const handleScan = useCallback(async () => {
     setScanning(true);
     setError(null);
+    setClis([]);
+    setSuggestions([]);
     try {
       const res = await fetch('/api/ai/detect-cli');
       const data = await res.json();
@@ -65,9 +64,7 @@ export function CliDetectionSection() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Terminal size={14} className="text-muted-foreground" />
-          <span className="text-[13px] font-medium text-foreground">
-            {t('agents.cliDetection', 'CLI Detection')}
-          </span>
+          <span className="text-[13px] font-medium text-foreground">CLI 检测</span>
         </div>
         <Button variant="outline" size="sm" onClick={handleScan} disabled={scanning}>
           {scanning ? (
@@ -75,14 +72,14 @@ export function CliDetectionSection() {
           ) : (
             <Search size={12} className="mr-1" />
           )}
-          {scanning ? t('common.scanning', 'Scanning...') : t('agents.scanPath', 'Scan PATH')}
+          {scanning ? '扫描中...' : '扫描 PATH'}
         </Button>
       </div>
 
       {scanning && (
         <div className="flex items-center gap-2 text-xs text-muted-foreground py-2">
           <Loader2 size={12} className="animate-spin" />
-          {t('agents.scanningPath', 'Scanning your system PATH for Agent CLIs...')}
+          正在扫描系统 PATH 中的 Agent CLI...
         </div>
       )}
 
@@ -91,9 +88,9 @@ export function CliDetectionSection() {
           <AlertCircle size={12} className="mt-0.5 shrink-0" />
           <span>
             {error === 'no_cli_found'
-              ? t('agents.noCliFound', 'No Agent CLIs detected. Configure a Provider manually below.')
+              ? '未检测到 Agent CLI。请手动配置供应商或安装 Claude Code / Codex / Gemini 等 CLI 工具。'
               : error === 'connection_failed'
-                ? t('agents.scanFailed', 'Could not connect to server.')
+                ? '无法连接服务器。'
                 : error}
           </span>
         </div>
@@ -101,9 +98,7 @@ export function CliDetectionSection() {
 
       {clis.length > 0 && (
         <div className="space-y-2">
-          <div className="text-[12px] font-medium text-muted-foreground">
-            {t('agents.detectedClis', 'Detected CLIs')}
-          </div>
+          <div className="text-[12px] font-medium text-muted-foreground">检测到的 CLI</div>
           {clis.map((cli) => (
             <div
               key={cli.name}
@@ -122,9 +117,7 @@ export function CliDetectionSection() {
 
           {suggestions.length > 0 && (
             <>
-              <div className="text-[12px] font-medium text-muted-foreground mt-2">
-                {t('agents.suggestedProviders', 'Suggested Providers')}
-              </div>
+              <div className="text-[12px] font-medium text-muted-foreground mt-2">推荐供应商配置</div>
               {suggestions.map((s) => (
                 <div
                   key={s.id}
@@ -133,11 +126,11 @@ export function CliDetectionSection() {
                   <div className="flex-1 min-w-0">
                     <div className="text-[13px] font-medium text-foreground truncate">{s.name}</div>
                     <div className="text-[11px] text-muted-foreground truncate">
-                      {s.baseUrl || 'Direct API'}
+                      {s.baseUrl || '直接 API'}
                     </div>
                   </div>
                   <Button variant="ghost" size="sm" onClick={() => handleApplySuggestion(s)}>
-                    {t('common.apply', 'Apply')}
+                    应用
                   </Button>
                 </div>
               ))}

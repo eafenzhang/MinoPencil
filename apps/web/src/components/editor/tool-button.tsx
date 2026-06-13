@@ -32,7 +32,7 @@ export default function ToolButton({ tool, icon, label, shortcut }: ToolButtonPr
           {icon}
         </button>
       </TooltipTrigger>
-      <TooltipContent side="right">
+      <TooltipContent side="bottom">
         {label}
         {shortcut && (
           <kbd className="ml-1.5 inline-flex h-4 items-center rounded border border-border/50 bg-muted px-1 font-mono text-[10px] text-muted-foreground">

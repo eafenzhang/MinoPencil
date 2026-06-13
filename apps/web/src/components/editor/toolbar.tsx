@@ -202,10 +202,10 @@ export default function Toolbar() {
   );
 
   return (
-    <div className="absolute top-2 left-2 z-10 w-10 bg-card border border-border rounded-xl flex flex-col items-center py-2 gap-1 shadow-lg">
+    <div className="absolute top-2 left-2 right-2 z-10 bg-card border border-border rounded-xl flex flex-row items-center px-2 py-1 gap-0.5 shadow-lg overflow-x-auto">
       <ToolButton
         tool="select"
-        icon={<MousePointer2 size={20} strokeWidth={1.5} />}
+        icon={<MousePointer2 size={16} strokeWidth={1.5} />}
         label={t('toolbar.select')}
         shortcut="V"
       />
@@ -215,30 +215,29 @@ export default function Toolbar() {
       />
       <ToolButton
         tool="text"
-        icon={<Type size={20} strokeWidth={1.5} />}
+        icon={<Type size={16} strokeWidth={1.5} />}
         label={t('toolbar.text')}
         shortcut="T"
       />
       <ToolButton
         tool="frame"
-        icon={<Frame size={20} strokeWidth={1.5} />}
+        icon={<Frame size={16} strokeWidth={1.5} />}
         label={t('toolbar.frame')}
         shortcut="F"
       />
       <ToolButton
         tool="hand"
-        icon={<Hand size={20} strokeWidth={1.5} />}
+        icon={<Hand size={16} strokeWidth={1.5} />}
         label={t('toolbar.hand')}
         shortcut="H"
       />
 
-      <Separator className="my-1 w-8" />
-
+      <Separator className="mx-1 h-6" />
       {/* Undo / Redo */}
       <Tooltip>
         <TooltipTrigger asChild>
           <Button variant="ghost" size="icon-sm" onClick={handleUndo} disabled={!canUndo}>
-            <Undo2 size={18} strokeWidth={1.5} />
+            <Undo2 size={16} strokeWidth={1.5} />
           </Button>
         </TooltipTrigger>
         <TooltipContent side="right">
@@ -251,7 +250,7 @@ export default function Toolbar() {
       <Tooltip>
         <TooltipTrigger asChild>
           <Button variant="ghost" size="icon-sm" onClick={handleRedo} disabled={!canRedo}>
-            <Redo2 size={18} strokeWidth={1.5} />
+            <Redo2 size={16} strokeWidth={1.5} />
           </Button>
         </TooltipTrigger>
         <TooltipContent side="right">
@@ -262,8 +261,7 @@ export default function Toolbar() {
         </TooltipContent>
       </Tooltip>
 
-      <Separator className="my-1 w-8" />
-
+      <Separator className="mx-1 h-6" />
       {/* Variables */}
       <Tooltip>
         <TooltipTrigger asChild>
@@ -278,7 +276,7 @@ export default function Toolbar() {
                 : 'text-muted-foreground hover:bg-muted hover:text-foreground'
             }`}
           >
-            <Braces size={20} strokeWidth={1.5} />
+            <Braces size={16} strokeWidth={1.5} />
           </button>
         </TooltipTrigger>
         <TooltipContent side="right">
@@ -303,7 +301,7 @@ export default function Toolbar() {
                 : 'text-muted-foreground hover:bg-muted hover:text-foreground'
             }`}
           >
-            <BookOpen size={20} strokeWidth={1.5} />
+            <BookOpen size={16} strokeWidth={1.5} />
           </button>
         </TooltipTrigger>
         <TooltipContent side="right">
@@ -328,7 +326,7 @@ export default function Toolbar() {
                 : 'text-muted-foreground hover:bg-muted hover:text-foreground'
             }`}
           >
-            <LayoutGrid size={20} strokeWidth={1.5} />
+            <LayoutGrid size={16} strokeWidth={1.5} />
           </button>
         </TooltipTrigger>
         <TooltipContent side="right">
@@ -353,9 +351,9 @@ export default function Toolbar() {
         onSelect={handleIconSelect}
       />
 
-      {/* Zoom controls — vertical layout for toolbar */}
-      <div className="mt-auto pt-1.5 border-t border-border/40 w-full flex flex-col items-center gap-0.5 px-0.5">
-        <StatusBar vertical />
+      {/* Spacer + zoom controls */}
+      <div className="ml-auto flex items-center gap-1 pl-2 border-l border-border/40">
+        <StatusBar />
       </div>
     </div>
   );

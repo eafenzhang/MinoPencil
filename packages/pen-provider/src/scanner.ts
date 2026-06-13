@@ -1,17 +1,23 @@
 import { execSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
 import { KNOWN_CLIS, type DetectedCLI, type SuggestedProvider } from './types';
 
 /**
- * Scan the system PATH for known Agent CLIs.
+ * Scan the system PATH + common install locations for known Agent CLIs.
+ * On Windows, also checks npm global prefix and common install dirs.
  */
 export function scanCLIs(): DetectedCLI[] {
+  const found = new Set<string>();
   const results: DetectedCLI[] = [];
-  const pathEnv = process.env.PATH || '';
-  const paths = pathEnv.split(/[:;]/).filter(Boolean);
+
+  // Collect all search paths: PATH + common install locations
+  const searchDirs = collectSearchDirs();
 
   for (const [cliName, _config] of Object.entries(KNOWN_CLIS)) {
-    for (const dir of paths) {
+    if (found.has(cliName)) continue;
+    for (const dir of searchDirs) {
       const candidate = findExecutable(dir, cliName);
       if (candidate) {
         const version = getCLIVersion(candidate);
@@ -21,7 +27,8 @@ export function scanCLIs(): DetectedCLI[] {
           version: version ?? undefined,
           detectedAt: Date.now(),
         });
-        break; // Found, no need to check other dirs
+        found.add(cliName);
+        break;
       }
     }
   }
@@ -29,24 +36,54 @@ export function scanCLIs(): DetectedCLI[] {
   return results;
 }
 
+/** Collect directories from PATH + common install locations. */
+function collectSearchDirs(): string[] {
+  const dirs = new Set<string>();
+
+  // System PATH
+  const pathEnv = process.env.PATH || '';
+  for (const p of pathEnv.split(/[:;]/)) {
+    const trimmed = p.trim();
+    if (trimmed) dirs.add(trimmed);
+  }
+
+  // Common npm global install locations (Windows)
+  const home = homedir();
+  const commonDirs = [
+    join(home, 'AppData', 'Roaming', 'npm'),
+    join(home, 'AppData', 'Roaming', 'npm', 'bin'),
+    join(process.env.LOCALAPPDATA || '', 'npm-cache'),
+    'C:\\Program Files\\nodejs',
+    'C:\\Program Files\\Git\\bin',
+    join(home, 'scoop', 'shims'),
+    join(home, '.cargo', 'bin'),
+    join(home, '.bun', 'bin'),
+    '/usr/local/bin',
+    '/opt/homebrew/bin',
+  ];
+  for (const d of commonDirs) {
+    if (d) dirs.add(d);
+  }
+
+  return [...dirs];
+}
+
 function findExecutable(dir: string, name: string): string | null {
-  // Try the direct name first (Unix/macOS)
+  // Try exact name first
   const exact = joinPath(dir, name);
   if (existsSync(exact)) return exact;
 
-  // Try with .exe extension (Windows)
-  const withExe = joinPath(dir, `${name}.exe`);
-  if (existsSync(withExe)) return withExe;
-
-  // Try with .cmd extension (Windows)
-  const withCmd = joinPath(dir, `${name}.cmd`);
-  if (existsSync(withCmd)) return withCmd;
+  // Windows extensions
+  const exts = ['.exe', '.cmd', '.bat', '.ps1'];
+  for (const ext of exts) {
+    const withExt = joinPath(dir, `${name}${ext}`);
+    if (existsSync(withExt)) return withExt;
+  }
 
   return null;
 }
 
 function joinPath(dir: string, file: string): string {
-  // Handle both / and \ path separators
   const separator = dir.includes('\\') ? '\\' : '/';
   return `${dir.replace(/[/\\]$/, '')}${separator}${file}`;
 }

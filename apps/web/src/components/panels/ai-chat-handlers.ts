@@ -257,15 +257,6 @@ async function runAgentStream(
     ...(hasVariables ? { hasVariables } : {}),
   };
 
-  // ACP: add agentId + config to the request body (config enables server-side
-  // auto-reconnect if the in-memory connection was lost due to dev server restart).
-  if (providerConfig.providerType === 'acp') {
-    const agentId = providerConfig.model.slice(4);
-    const acpConfig = useAgentSettingsStore.getState().acpAgents.find((a) => a.id === agentId);
-    (agentBody as any).acpAgentId = agentId;
-    if (acpConfig) (agentBody as any).acpConfig = acpConfig;
-  }
-
   const response = await fetch('/api/ai/agent', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -496,13 +487,20 @@ export function useChatHandlers() {
       const messageText = text ?? input.trim();
       const pendingAttachments = useAIStore.getState().pendingAttachments;
       const hasAttachments = pendingAttachments.length > 0;
-      if (
-        (!messageText && !hasAttachments) ||
-        isStreaming ||
-        isLoadingModels ||
-        availableModels.length === 0
-      )
+      if ((!messageText && !hasAttachments) || isStreaming) return;
+
+      // 没有可用模型时提示用户配置供应商
+      if (availableModels.length === 0) {
+        setInput('');
+        const noModelMsg: ChatMessageType = {
+          id: nanoid(),
+          role: 'assistant',
+          content: '⚠️ 未检测到可用的 AI 模型。请点击左上角菜单 → **设置 → AI 供应商** 配置 API Key 或连接 Agent CLI。',
+          timestamp: Date.now(),
+        };
+        addMessage(noModelMsg);
         return;
+      }
 
       setInput('');
       useAIStore.getState().clearPendingAttachments();
@@ -621,60 +619,12 @@ export function useChatHandlers() {
       }
 
       // -----------------------------------------------------------------------
-      // ACP AGENT MODE — routes to ACP agent via runAgentStream()
+      // ACP AGENT MODE — removed in MinoPencil fork
       // -----------------------------------------------------------------------
       if (model.startsWith('acp:')) {
-        const agentId = model.slice(4);
-        const { acpAgents } = useAgentSettingsStore.getState();
-        const acpConfig = acpAgents.find((a: any) => a.id === agentId);
-        if (!acpConfig) {
-          useAIStore.setState((s) => {
-            const msgs = [...s.messages];
-            const last = msgs[msgs.length - 1];
-            if (last) {
-              last.content = 'ACP agent not found. Please check your settings.';
-              last.isStreaming = false;
-            }
-            return { messages: msgs };
-          });
-          return;
-        }
-
-        useAIStore.getState().clearToolCallBlocks();
-        try {
-          await runAgentStream(
-            assistantMsg.id,
-            {
-              providerType: 'acp',
-              apiKey: 'acp',
-              model: model,
-            },
-            abortController,
-          );
-        } catch (err) {
-          const errorMsg = err instanceof Error ? err.message : String(err);
-          useAIStore.setState((s) => {
-            const msgs = [...s.messages];
-            const last = msgs[msgs.length - 1];
-            if (last) {
-              last.content = last.content
-                ? `${last.content}\n\n**Error:** ${errorMsg}`
-                : `**Error:** ${errorMsg}`;
-              last.isStreaming = false;
-            }
-            return { messages: msgs };
-          });
-        } finally {
-          // Always clear streaming state — both on success and on error.
-          useAIStore.getState().setAbortController(null);
-          setStreaming(false);
-          useAIStore.setState((s) => {
-            const msgs = [...s.messages];
-            const last = msgs[msgs.length - 1];
-            if (last?.isStreaming) last.isStreaming = false;
-            return { messages: msgs };
-          });
-        }
+        updateLastMessage('⚠️ ACP Agent 模式已移除。请使用内置供应商或 API Key 配置。');
+        useAIStore.getState().setAbortController(null);
+        setStreaming(false);
         return;
       }
 

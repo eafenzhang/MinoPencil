@@ -15,7 +15,6 @@ import SaveDialog from '@/components/shared/save-dialog';
 import AgentSettingsDialog from '@/components/shared/agent-settings-dialog';
 import UnsavedChangesDialog from '@/components/shared/unsaved-changes-dialog';
 import type { UnsavedResult } from '@/components/shared/unsaved-changes-dialog';
-import UpdateReadyBanner from './update-ready-banner';
 import { useAIStore } from '@/stores/ai-store';
 import { useCanvasStore } from '@/stores/canvas-store';
 import { useGitStore } from '@/stores/git-store';
@@ -198,7 +197,6 @@ export default function EditorLayout() {
   return (
     <TooltipProvider delayDuration={300}>
       <div className="h-screen flex flex-col bg-background">
-        <UpdateReadyBanner />
         <TopBar />
         <div className="flex-1 flex flex-col overflow-hidden">
           <div className="flex-1 flex overflow-hidden">

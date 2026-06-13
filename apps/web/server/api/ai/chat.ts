@@ -979,135 +979,118 @@ function streamViaBuiltin(body: ChatBody) {
   const stream = new ReadableStream({
     async start(controller) {
       const encoder = new TextEncoder();
-      const BUILTIN_EVENT_IDLE_TIMEOUT_MS = 45_000;
       const pingTimer = startSSEKeepAlive(() => {
         controller.enqueue(
-          encoder.encode(`data: ${JSON.stringify({ type: 'ping', content: '' })}\n\n`),
+          encoder.encode('data: ' + JSON.stringify({ type: 'ping', content: '' }) + '\n\n'),
         );
       }, KEEPALIVE_INTERVAL_MS);
 
       try {
-        const {
-          createAnthropicProvider,
-          createOpenAICompatProvider,
-          createQueryEngine,
-          seedMessages,
-          submitMessage,
-          nextEvent,
-          abortEngine,
-          destroyIterator,
-          destroyQueryEngine,
-          destroyProvider,
-        } = ({})
-
         const apiKey = body.builtinApiKey;
         const rawModel = body.model?.trim() ?? '';
-        // Model string may be "builtin:<providerId>:<actualModel>" — extract the actual model name
         const model = rawModel.startsWith('builtin:')
           ? rawModel.split(':').slice(2).join(':')
           : rawModel;
         if (!apiKey || !model) throw new Error('Builtin provider requires apiKey and model');
 
-        const normalizedBuiltinBaseURL = normalizeOptionalBaseURL(body.builtinBaseURL);
-        const builtinProvider =
-          body.builtinType === 'anthropic'
-            ? createAnthropicProvider(apiKey, model, normalizedBuiltinBaseURL)
-            : createOpenAICompatProvider(
-                apiKey,
-                requireOpenAICompatBaseURL(normalizedBuiltinBaseURL),
-                model,
-              );
+        const baseUrl = (body.builtinBaseURL || 'https://api.anthropic.com').replace(/\/+$/, '');
+        const isAnthropic = body.builtinType === 'anthropic';
 
-        // Pure streaming — no tools, maxTurns=1 prevents agentic looping
-        const builtinEngine = createQueryEngine({
-          provider: builtinProvider,
-          systemPrompt: body.system,
-          maxTurns: 1,
-          maxOutputTokens: 16384,
-          cwd: process.cwd(),
-        });
+        const msgs = body.messages.map((m: any) => ({
+          role: m.role,
+          content: m.content,
+        }));
 
-        // Seed prior conversation history for multi-turn context
-        const priorMsgs = body.messages
-          .slice(0, -1)
-          .filter(
-            (m: any) =>
-              (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string',
-          );
-        if (priorMsgs.length > 0) {
-          seedMessages(builtinEngine, JSON.stringify(priorMsgs));
+        let response: Response;
+        if (isAnthropic) {
+          response = await fetch(baseUrl + '/v1/messages', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-api-key': apiKey,
+              'anthropic-version': '2023-06-01',
+            },
+            body: JSON.stringify({
+              model,
+              system: body.system || undefined,
+              messages: msgs,
+              max_tokens: 4096,
+              stream: true,
+            }),
+            signal: AbortSignal.timeout(120_000),
+          });
+        } else {
+          const url = baseUrl + '/chat/completions';
+          response = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + apiKey,
+            },
+            body: JSON.stringify({
+              model,
+              messages: [
+                ...(body.system ? [{ role: 'system', content: body.system }] : []),
+                ...msgs,
+              ],
+              max_tokens: 4096,
+              stream: true,
+            }),
+            signal: AbortSignal.timeout(120_000),
+          });
         }
 
-        const lastMsg = body.messages[body.messages.length - 1]?.content ?? '';
-        const builtinIter = await submitMessage(builtinEngine, lastMsg);
+        if (!response.ok) {
+          const errText = await response.text().catch(() => 'Unknown error');
+          throw new Error('API ' + response.status + ': ' + errText.slice(0, 200));
+        }
 
-        // Abort engine if no events arrive within 60s (provider sent 200 but no SSE data)
-        let gotFirstEvent = false;
-        const firstEventTimer = setTimeout(() => {
-          if (!gotFirstEvent) {
-            console.warn('[builtin] No SSE events received within 60s — aborting engine');
-            abortEngine(builtinEngine);
+        if (!response.body) throw new Error('No response body');
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop() ?? '';
+
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed || trimmed.startsWith(':')) continue;
+            if (!trimmed.startsWith('data: ')) continue;
+
+            const data = trimmed.slice(6);
+            if (data === '[DONE]') continue;
+
+            try {
+              const parsed = JSON.parse(data);
+              let text = '';
+              if (isAnthropic) {
+                if (parsed.type === 'content_block_delta' && parsed.delta?.text) {
+                  text = parsed.delta.text;
+                }
+              } else {
+                if (parsed.choices?.[0]?.delta?.content) {
+                  text = parsed.choices[0].delta.content;
+                }
+              }
+              if (text) {
+                controller.enqueue(
+                  encoder.encode('data: ' + JSON.stringify({ type: 'text', content: text }) + '\n\n'),
+                );
+              }
+            } catch {}
           }
-        }, 60_000);
-
-        try {
-          let raw: string | null;
-          while (
-            (raw = await waitForBuiltinEvent(
-              nextEvent,
-              builtinIter,
-              () => abortEngine(builtinEngine),
-              BUILTIN_EVENT_IDLE_TIMEOUT_MS,
-            )) !== null
-          ) {
-            if (!gotFirstEvent) {
-              gotFirstEvent = true;
-              clearTimeout(firstEventTimer);
-            }
-            const evt = JSON.parse(raw);
-            // Zig events are tagged unions: {"stream_event":{...}} or {"result":{...}}
-            const se = evt.stream_event;
-            if (se?.type === 'text_delta' && se.text) {
-              controller.enqueue(
-                encoder.encode(`data: ${JSON.stringify({ type: 'text', content: se.text })}\n\n`),
-              );
-            } else if (se?.type === 'thinking_delta' && se.text) {
-              controller.enqueue(
-                encoder.encode(
-                  `data: ${JSON.stringify({ type: 'thinking', content: se.text })}\n\n`,
-                ),
-              );
-            } else if (evt.result?.is_error) {
-              // Zig attaches the provider's last_error string in result.errors[0]
-              // (e.g. "Content blocked by provider safety filter (HTTP 451)...").
-              // Surface that instead of the opaque subtype so users see the
-              // actual reason — "content blocked" vs. "rate limit" vs. "auth"
-              // is information they can act on.
-              const detail =
-                (Array.isArray(evt.result.errors) && evt.result.errors[0]) ||
-                evt.result.subtype ||
-                'unknown';
-              const errMsg = `Provider error: ${detail}`;
-              console.error('[builtin]', errMsg);
-              controller.enqueue(
-                encoder.encode(`data: ${JSON.stringify({ type: 'error', content: errMsg })}\n\n`),
-              );
-            }
-          }
-
-          controller.enqueue(
-            encoder.encode(`data: ${JSON.stringify({ type: 'done', content: '' })}\n\n`),
-          );
-        } finally {
-          clearTimeout(firstEventTimer);
-          destroyIterator(builtinIter);
-          destroyQueryEngine(builtinEngine);
-          destroyProvider(builtinProvider);
         }
       } catch (error) {
         const content = formatFetchError(error);
         controller.enqueue(
-          encoder.encode(`data: ${JSON.stringify({ type: 'error', content })}\n\n`),
+          encoder.encode('data: ' + JSON.stringify({ type: 'error', content: content }) + '\n\n'),
         );
       } finally {
         clearInterval(pingTimer);

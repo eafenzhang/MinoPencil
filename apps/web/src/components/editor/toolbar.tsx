@@ -353,9 +353,9 @@ export default function Toolbar() {
         onSelect={handleIconSelect}
       />
 
-      {/* Zoom controls (moved from status bar) */}
-      <div className="mt-auto pt-2 border-t border-border/40 w-full flex justify-center">
-        <StatusBar />
+      {/* Zoom controls — vertical layout for toolbar */}
+      <div className="mt-auto pt-1.5 border-t border-border/40 w-full flex flex-col items-center gap-0.5 px-0.5">
+        <StatusBar vertical />
       </div>
     </div>
   );

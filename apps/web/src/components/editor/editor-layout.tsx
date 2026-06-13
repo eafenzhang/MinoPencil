@@ -19,6 +19,7 @@ import { useCanvasStore } from '@/stores/canvas-store';
 import { useGitStore } from '@/stores/git-store';
 import { useDocumentStore } from '@/stores/document-store';
 import { useAgentSettingsStore } from '@/stores/agent-settings-store';
+import type { BuiltinProviderConfig } from '@/stores/agent-settings-store';
 import { useUIKitStore } from '@/stores/uikit-store';
 import { useThemePresetStore } from '@/stores/theme-preset-store';
 import { useDesignMdStore } from '@/stores/design-md-store';
@@ -39,6 +40,8 @@ export default function EditorLayout() {
   // Figma import removed in MinoPencil fork
   const canvasNodeCount = useCanvasStore((s) => s.selection.allIds?.length ?? 0);
   const isCanvasEmpty = canvasNodeCount === 0;
+  const builtinProviders = useAgentSettingsStore((s) => s.builtinProviders);
+  const hasConfiguredProvider = builtinProviders.some((p: BuiltinProviderConfig) => p.enabled && p.apiKey);
   const browserOpen = useUIKitStore((s) => s.browserOpen);
   const saveDialogOpen = useDocumentStore((s) => s.saveDialogOpen);
   const closeSaveDialog = useCallback(() => {
@@ -224,8 +227,8 @@ export default function EditorLayout() {
               {/* Expanded AI panel (floating, draggable) */}
               <AIChatPanel />
 
-              {/* Welcome overlay when canvas is empty */}
-              {isCanvasEmpty && <WelcomeOverlay />}
+              {/* Welcome overlay when canvas is empty and no provider configured */}
+              {isCanvasEmpty && !hasConfiguredProvider && <WelcomeOverlay />}
             </div>
             {hasSelection && <RightPanel />}
           </div>

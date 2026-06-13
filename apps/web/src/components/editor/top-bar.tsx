@@ -382,26 +382,26 @@ export default function TopBar() {
           />
         </div>
 
+        {/* File name moved to left side */}
+        <div className="flex items-center gap-1.5 min-w-0">
+          <span className="truncate text-xs leading-none text-foreground max-w-[200px]" suppressHydrationWarning>
+            {displayName}
+          </span>
+          {isDirty && (
+            <span className="text-xs leading-none text-muted-foreground">{t('topbar.edited')}</span>
+          )}
+          {saveIndicator && (
+            <span className="text-[10px] leading-none text-emerald-500 animate-pulse">
+              {t('fileMenu.saved')}
+            </span>
+          )}
+          <div className="app-region-no-drag flex items-center">
+            <GitButton />
+          </div>
+        </div>
+
         <div className="w-px h-3.5 bg-border/60 mx-1" />
 
-      </div>
-
-      {/* Center section — file name + git indicator */}
-      <div className="flex min-w-0 flex-1 items-center justify-center gap-1.5">
-        <span className="truncate text-xs leading-none text-foreground" suppressHydrationWarning>
-          {displayName}
-        </span>
-        {isDirty && (
-          <span className="text-xs leading-none text-muted-foreground">{t('topbar.edited')}</span>
-        )}
-        {saveIndicator && (
-          <span className="text-[10px] leading-none text-emerald-500 animate-pulse">
-            {t('fileMenu.saved')}
-          </span>
-        )}
-        <div className="app-region-no-drag flex items-center">
-          <GitButton />
-        </div>
       </div>
 
       {/* Right section */}

@@ -4,7 +4,11 @@ import { useCanvasStore } from '@/stores/canvas-store';
 import { getSkiaEngineRef } from '@/canvas/skia-engine-ref';
 import { Button } from '@/components/ui/button';
 
-export default function StatusBar() {
+interface StatusBarProps {
+  vertical?: boolean;
+}
+
+export default function StatusBar({ vertical }: StatusBarProps) {
   const { t } = useTranslation();
   const zoom = useCanvasStore((s) => s.viewport.zoom);
   const selectedIds = useCanvasStore((s) => s.selection.selectedIds);
@@ -32,23 +36,35 @@ export default function StatusBar() {
   const focusLabel =
     selectedIds.length > 0 ? t('statusbar.focusSelection') : t('statusbar.focusContent');
 
+  if (vertical) {
+    return (
+      <div className="flex flex-col items-center gap-0.5">
+        <Button variant="ghost" size="icon-sm" onClick={handleFocusFit} aria-label={focusLabel} title={focusLabel}>
+          <Search size={13} />
+        </Button>
+        <Button variant="ghost" size="icon-sm" onClick={handleZoomOut} aria-label={t('statusbar.zoomOut')}>
+          <Minus size={13} />
+        </Button>
+        <button
+          onClick={handleZoomReset}
+          className="w-full h-4 text-[10px] text-muted-foreground hover:text-foreground tabular-nums text-center cursor-pointer bg-transparent border-none"
+          aria-label={t('statusbar.resetZoom')}
+        >
+          {zoomPercent}%
+        </button>
+        <Button variant="ghost" size="icon-sm" onClick={handleZoomIn} aria-label={t('statusbar.zoomIn')}>
+          <Plus size={13} />
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <div className="h-7 bg-card border border-border rounded-lg flex items-center px-1 gap-0.5 shadow-lg">
-      <Button
-        variant="ghost"
-        size="icon-sm"
-        onClick={handleFocusFit}
-        aria-label={focusLabel}
-        title={focusLabel}
-      >
+      <Button variant="ghost" size="icon-sm" onClick={handleFocusFit} aria-label={focusLabel} title={focusLabel}>
         <Search size={14} />
       </Button>
-      <Button
-        variant="ghost"
-        size="icon-sm"
-        onClick={handleZoomOut}
-        aria-label={t('statusbar.zoomOut')}
-      >
+      <Button variant="ghost" size="icon-sm" onClick={handleZoomOut} aria-label={t('statusbar.zoomOut')}>
         <Minus size={14} />
       </Button>
       <button
@@ -58,12 +74,7 @@ export default function StatusBar() {
       >
         {zoomPercent}%
       </button>
-      <Button
-        variant="ghost"
-        size="icon-sm"
-        onClick={handleZoomIn}
-        aria-label={t('statusbar.zoomIn')}
-      >
+      <Button variant="ghost" size="icon-sm" onClick={handleZoomIn} aria-label={t('statusbar.zoomIn')}>
         <Plus size={14} />
       </Button>
     </div>

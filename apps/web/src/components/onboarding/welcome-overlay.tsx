@@ -1,17 +1,34 @@
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Sparkles, Settings, ArrowRight } from 'lucide-react';
+import { Sparkles, Settings, ArrowRight, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAgentSettingsStore } from '@/stores/agent-settings-store';
 import { useDocumentStore } from '@/stores/document-store';
 
+const DISMISSED_KEY = 'minopencil-welcome-dismissed';
+
 /**
  * Welcome overlay shown when the canvas is empty.
  * Guides the user through getting started with MinoPencil.
+ * Dismissible — stays dismissed across sessions via localStorage.
  */
 export function WelcomeOverlay() {
   const { t } = useTranslation();
   const openSettings = useAgentSettingsStore((s) => s.setDialogOpen);
   const createNew = useDocumentStore((s) => s.createNewDocument);
+  const [dismissed, setDismissed] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return localStorage.getItem(DISMISSED_KEY) === 'true';
+  });
+
+  const handleDismiss = useCallback(() => {
+    setDismissed(true);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(DISMISSED_KEY, 'true');
+    }
+  }, []);
+
+  if (dismissed) return null;
 
   const examples = [
     { label: t('welcome.exampleLogin', 'Login Page'), prompt: 'Create a modern login page with email, password, and social login buttons' },
@@ -20,15 +37,26 @@ export function WelcomeOverlay() {
   ];
 
   const handleExampleClick = (prompt: string) => {
-    // Ensure we have a document, then set the AI prompt
     createNew();
-    // Dispatch event so AI chat panel picks it up
-    window.dispatchEvent(new CustomEvent('minopencil:send-prompt', { detail: { prompt } }));
+    handleDismiss();
+    // Small delay so the AI store is ready
+    setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('minopencil:send-prompt', { detail: { prompt } }));
+    }, 100);
   };
 
   return (
     <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/80 backdrop-blur-sm pointer-events-auto">
-      <div className="max-w-md w-full mx-auto p-8 text-center space-y-6">
+      <div className="relative max-w-md w-full mx-auto p-8 text-center space-y-6">
+        {/* Close button */}
+        <button
+          onClick={handleDismiss}
+          className="absolute top-2 right-2 p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
+          aria-label={t('common.close', 'Close')}
+        >
+          <X size={16} />
+        </button>
+
         {/* Logo / Icon */}
         <div className="flex justify-center">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border border-primary/10">
@@ -49,7 +77,7 @@ export function WelcomeOverlay() {
           <Button
             variant="default"
             className="w-full gap-2"
-            onClick={() => openSettings(true)}
+            onClick={() => { openSettings(true); handleDismiss(); }}
           >
             <Settings size={14} />
             {t('welcome.configureProvider', 'Configure AI Provider')}

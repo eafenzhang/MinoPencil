@@ -70,7 +70,8 @@ export function AIChatMinimizedBar() {
 }
 
 /**
- * Expanded AI chat panel — floating, draggable.
+ * Expanded AI chat panel — bottom-floating bar.
+ * Anchored to the bottom of the canvas by default.
  * Only renders when NOT minimized.
  */
 export default function AIChatPanel() {
@@ -392,9 +393,11 @@ export default function AIChatPanel() {
       ref={panelRef}
       className={cn(
         'absolute z-50 flex flex-col overflow-hidden rounded-xl border border-border bg-card/95 shadow-2xl backdrop-blur-sm',
-        isMaximized ? 'inset-3' : !dragStyle && CORNER_CLASSES[panelCorner],
+        isMaximized
+          ? 'inset-3'
+          : 'bottom-3 left-3 right-3 mx-auto',
       )}
-      style={isMaximized ? undefined : { ...dragStyle, width: panelWidth, height: panelHeight }}
+      style={isMaximized ? undefined : { maxWidth: 600, width: 'calc(100% - 24px)', height: panelHeight }}
     >
       {/* --- Resize Handles (8 directions, hidden when maximized) --- */}
       {!isMaximized && (

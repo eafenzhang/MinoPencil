@@ -230,7 +230,7 @@ export default function EditorLayout() {
               {/* Welcome overlay when canvas is empty and no provider configured */}
               {isCanvasEmpty && !hasConfiguredProvider && <WelcomeOverlay />}
             </div>
-            {hasSelection && <RightPanel />}
+            <RightPanel />
           </div>
         </div>
         <ExportDialog open={exportOpen} onClose={closeExport} />

@@ -21,7 +21,6 @@
       "@/*": ["./src/*"],
       "@minopencil/pen-types": ["../../packages/pen-types/src/index.ts"],
       "@minopencil/pen-core": ["../../packages/pen-core/src/index.ts"],
-      "@minopencil/pen-figma": ["../../packages/pen-figma/src/index.ts"],
       "@minopencil/pen-renderer": ["../../packages/pen-renderer/src/index.ts"],
       "@minopencil/pen-engine": ["../../packages/pen-engine/src/index.ts"],
       "@minopencil/pen-react": ["../../packages/pen-react/src/index.ts"],

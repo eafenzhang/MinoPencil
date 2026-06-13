@@ -202,7 +202,7 @@ export default function Toolbar() {
   );
 
   return (
-    <div className="absolute top-2 left-2 right-2 z-10 bg-card border border-border rounded-xl flex flex-row items-center px-2 py-1 gap-0.5 shadow-lg overflow-x-auto">
+    <div className="absolute top-2 left-2 z-10 bg-card border border-border rounded-xl flex flex-row items-center px-1.5 py-1 gap-0.5 shadow-lg">
       <ToolButton
         tool="select"
         icon={<MousePointer2 size={16} strokeWidth={1.5} />}

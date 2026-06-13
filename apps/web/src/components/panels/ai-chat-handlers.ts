@@ -489,16 +489,10 @@ export function useChatHandlers() {
       const hasAttachments = pendingAttachments.length > 0;
       if ((!messageText && !hasAttachments) || isStreaming) return;
 
-      // 没有可用模型时提示用户配置供应商
+      // 没有可用模型时自动弹出设置面板
       if (availableModels.length === 0) {
         setInput('');
-        const noModelMsg: ChatMessageType = {
-          id: nanoid(),
-          role: 'assistant',
-          content: '⚠️ 未检测到可用的 AI 模型。请点击左上角菜单 → **设置 → AI 供应商** 配置 API Key 或连接 Agent CLI。',
-          timestamp: Date.now(),
-        };
-        addMessage(noModelMsg);
+        useAgentSettingsStore.getState().setDialogOpen(true);
         return;
       }
 

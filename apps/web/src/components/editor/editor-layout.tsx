@@ -13,7 +13,6 @@ import ComponentBrowserPanel from '@/components/panels/component-browser-panel';
 import ExportDialog from '@/components/shared/export-dialog';
 import SaveDialog from '@/components/shared/save-dialog';
 import AgentSettingsDialog from '@/components/shared/agent-settings-dialog';
-import FigmaImportDialog from '@/components/shared/figma-import-dialog';
 import UnsavedChangesDialog from '@/components/shared/unsaved-changes-dialog';
 import type { UnsavedResult } from '@/components/shared/unsaved-changes-dialog';
 import UpdateReadyBanner from './update-ready-banner';
@@ -26,7 +25,6 @@ import { useUIKitStore } from '@/stores/uikit-store';
 import { useThemePresetStore } from '@/stores/theme-preset-store';
 import { useDesignMdStore } from '@/stores/design-md-store';
 import { useElectronMenu } from '@/hooks/use-electron-menu';
-import { useFigmaPaste } from '@/hooks/use-figma-paste';
 import { useMcpSync } from '@/hooks/use-mcp-sync';
 import { useFileDrop } from '@/hooks/use-file-drop';
 import { initAppStorage } from '@/utils/app-storage';
@@ -39,10 +37,7 @@ export default function EditorLayout() {
   const layerPanelOpen = useCanvasStore((s) => s.layerPanelOpen);
   const variablesPanelOpen = useCanvasStore((s) => s.variablesPanelOpen);
   const designMdPanelOpen = useCanvasStore((s) => s.designMdPanelOpen);
-  const figmaImportOpen = useCanvasStore((s) => s.figmaImportDialogOpen);
-  const closeFigmaImport = useCallback(() => {
-    useCanvasStore.getState().setFigmaImportDialogOpen(false);
-  }, []);
+  // Figma import removed in MinoPencil fork
   const browserOpen = useUIKitStore((s) => s.browserOpen);
   const saveDialogOpen = useDocumentStore((s) => s.saveDialogOpen);
   const closeSaveDialog = useCallback(() => {
@@ -130,13 +125,6 @@ export default function EditorLayout() {
         return;
       }
 
-      // Cmd+Shift+F: open Figma import
-      if (isMod && e.shiftKey && e.key.toLowerCase() === 'f') {
-        e.preventDefault();
-        useCanvasStore.getState().setFigmaImportDialogOpen(true);
-        return;
-      }
-
       // Cmd+,: open agent settings
       if (isMod && e.key === ',') {
         e.preventDefault();
@@ -178,9 +166,6 @@ export default function EditorLayout() {
 
   // Handle Electron native menu actions
   useElectronMenu();
-
-  // Handle Figma clipboard paste
-  useFigmaPaste();
 
   // MCP ↔ canvas real-time sync
   useMcpSync();
@@ -248,7 +233,6 @@ export default function EditorLayout() {
         <ExportDialog open={exportOpen} onClose={closeExport} />
         <SaveDialog open={saveDialogOpen} onClose={closeSaveDialog} />
         <AgentSettingsDialog />
-        <FigmaImportDialog open={figmaImportOpen} onClose={closeFigmaImport} />
         <UnsavedChangesDialog
           open={unsavedDialog.open}
           fileName={unsavedDialog.fileName}

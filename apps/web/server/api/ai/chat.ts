@@ -259,7 +259,7 @@ function streamViaAgentSDK(body: ChatBody, requestedModel?: string) {
       let attachTempDir: string | undefined;
 
       try {
-        const { query } = await import('@anthropic-ai/claude-agent-sdk');
+        const { query } = ({})
 
         // Build prompt from the last user message
         const lastUserMsg = [...body.messages].reverse().find((m) => m.role === 'user');
@@ -908,7 +908,7 @@ function streamViaCopilot(body: ChatBody, model?: string) {
 
       let copilotClient: { stop(): Promise<unknown> } | undefined;
       try {
-        const { CopilotClient, approveAll } = await import('@github/copilot-sdk');
+        const { CopilotClient, approveAll } = ({})
         // Use standalone copilot binary to avoid Bun's node:sqlite issue
         const { resolveCopilotCli, resolveCliPathForSdk } =
           await import('../../utils/copilot-client');
@@ -998,7 +998,7 @@ function streamViaBuiltin(body: ChatBody) {
           destroyIterator,
           destroyQueryEngine,
           destroyProvider,
-        } = await import('@minopencil/agent-native');
+        } = ({})
 
         const apiKey = body.builtinApiKey;
         const rawModel = body.model?.trim() ?? '';

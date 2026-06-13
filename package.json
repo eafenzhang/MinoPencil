@@ -13,9 +13,9 @@
   "type": "module",
   "main": "out/desktop/main.cjs",
   "scripts": {
-    "dev": "npx vite --port 3000",
-    "build": "npx vite build",
-    "preview": "npx vite preview",
+    "dev": "cd apps/web && npx vite",
+    "build": "cd apps/web && npx vite build",
+    "preview": "cd apps/web && npx vite preview",
     "test": "npx vitest run --passWithNoTests",
     "electron:dev": "npx tsx apps/desktop/dev.ts",
     "electron:build": "npm run build && npx electron-builder --config apps/desktop/electron-builder.yml",

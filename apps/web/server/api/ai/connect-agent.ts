@@ -154,7 +154,7 @@ async function connectClaudeCode(): Promise<ConnectResult> {
   }
 
   try {
-    const { query } = await import('@anthropic-ai/claude-agent-sdk');
+    const { query } = ({})
 
     const env = buildClaudeAgentEnv();
     const debugFile = getClaudeAgentDebugFilePath();
@@ -759,7 +759,7 @@ async function connectCopilot(): Promise<ConnectResult> {
   const cliPath = resolveCliPathForSdk(rawCliPath);
 
   try {
-    const { CopilotClient } = await import('@github/copilot-sdk');
+    const { CopilotClient } = ({})
     // In Electron, the SDK spawns `process.execPath` (= MinoPencil.exe) to run
     // the .js entry. ELECTRON_RUN_AS_NODE makes that binary behave as plain Node
     // so it doesn't reject `index.js` as a stray positional argument.

@@ -156,10 +156,6 @@ export function useElectronMenu() {
           clearRecentFiles();
           break;
 
-        case 'import-figma':
-          useCanvasStore.getState().setFigmaImportDialogOpen(true);
-          break;
-
         case 'export-image':
           useCanvasStore.getState().setExportDialogOpen(true);
           break;

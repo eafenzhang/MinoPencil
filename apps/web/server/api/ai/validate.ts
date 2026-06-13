@@ -103,7 +103,7 @@ async function validateViaAgentSDK(
   return await withTempImageFile(
     body.imageBase64,
     async (tempPath) => {
-      const { query } = await import('@anthropic-ai/claude-agent-sdk');
+      const { query } = ({})
 
       const env = buildClaudeAgentEnv();
       const debugFile = getClaudeAgentDebugFilePath();

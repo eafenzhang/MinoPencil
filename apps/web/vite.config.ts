@@ -59,7 +59,12 @@ const config = defineConfig({
           'jsdom',
           'cssstyle',
           'canvaskit-wasm',
-          // agent-native removed in MinoPencil
+          '@minopencil/agent-native',
+          '@agentclientprotocol/sdk',
+          '@anthropic-ai/claude-agent-sdk',
+          '@anthropic-ai/sdk',
+          '@github/copilot-sdk',
+          '@opencode-ai/sdk',
         ],
       },
       serverDir: './server',

@@ -17,7 +17,6 @@ import OpenAILogo from '@/components/icons/openai-logo';
 import OpenCodeLogo from '@/components/icons/opencode-logo';
 import CopilotLogo from '@/components/icons/copilot-logo';
 import GeminiLogo from '@/components/icons/gemini-logo';
-import FigmaLogo from '@/components/icons/figma-logo';
 import FileMenu from '@/components/shared/file-menu';
 import LanguageSelector from '@/components/shared/language-selector';
 import { GitButton } from '@/components/editor/git-button';
@@ -385,19 +384,6 @@ export default function TopBar() {
 
         <div className="w-px h-3.5 bg-border/60 mx-1" />
 
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              className="text-muted-foreground"
-              onClick={() => useCanvasStore.getState().setFigmaImportDialogOpen(true)}
-            >
-              <FigmaLogo className="w-3.5 h-3.5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="bottom">{t('topbar.importFigma')}</TooltipContent>
-        </Tooltip>
       </div>
 
       {/* Center section — file name + git indicator */}

@@ -63,7 +63,7 @@ async function generateViaAgentSDK(
   requestedModel?: string,
 ): Promise<{ text?: string; error?: string }> {
   const runQuery = async (): Promise<{ text?: string; error?: string }> => {
-    const { query } = await import('@anthropic-ai/claude-agent-sdk');
+    const { query } = ({})
 
     // Remove CLAUDECODE env to allow running from within a CC terminal
     const env = buildClaudeAgentEnv();
@@ -306,7 +306,7 @@ async function generateViaGemini(
 /** Stream via Claude Agent SDK — emits text/thinking deltas as SSE */
 function streamViaAgentSDK(body: GenerateBody, requestedModel?: string) {
   return createSSEResponse(async (emit) => {
-    const { query } = await import('@anthropic-ai/claude-agent-sdk');
+    const { query } = ({})
     const env = buildClaudeAgentEnv();
     const debugFile = getClaudeAgentDebugFilePath();
     const model = requestedModel;

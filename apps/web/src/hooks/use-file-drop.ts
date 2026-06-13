@@ -63,12 +63,12 @@ export function useFileDrop() {
     const file = e.dataTransfer?.files?.[0];
     if (!file) return;
 
-    // .fig files → open Figma import dialog with the file pre-loaded
+    // .fig files → open  import dialog with the file pre-loaded
     const ext = file.name.split('.').pop()?.toLowerCase();
     if (ext === 'fig') {
       const store = useCanvasStore.getState();
-      store.setPendingFigmaFile(file);
-      store.setFigmaImportDialogOpen(true);
+      store.setPendingFile(file);
+      store.setImportDialogOpen(true);
       return;
     }
 

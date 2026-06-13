@@ -1,21 +1,4 @@
-import type {
-  QueryEngineHandle,
-  IteratorHandle,
-  ProviderHandle,
-  ToolRegistryHandle,
-  TeamHandle,
-} from '@minopencil/agent-native';
-import type { ClientSideConnection } from '@agentclientprotocol/sdk';
 import type { LayoutPhase } from './agent-tool-guard';
-import {
-  abortEngine,
-  destroyIterator,
-  destroyQueryEngine,
-  destroyToolRegistry,
-  destroyProvider,
-  abortTeam,
-  destroyTeam,
-} from '@minopencil/agent-native';
 
 export interface NativeAgentSession {
   type: 'native';

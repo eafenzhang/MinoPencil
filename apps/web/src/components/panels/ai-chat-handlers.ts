@@ -545,79 +545,120 @@ export function useChatHandlers() {
       let accumulated = '';
 
       // -----------------------------------------------------------------------
-      // BUILT-IN PROVIDER (Agent) MODE — uses Zig engine via runAgentStream()
-      // Rendering is consistent with orchestrator path via shared
-      // StreamingDesignRenderer (breathing glow, animation, cleanup).
+      // BUILT-IN PROVIDER MODE — flows into the same design/chat pipeline below
+      // by setting currentProvider = 'builtin' so streamChat loads the API key.
       // -----------------------------------------------------------------------
       if (model.startsWith('builtin:')) {
         const parts = model.split(':');
         const builtinProviderId = parts[1];
         const modelName = parts.slice(2).join(':');
-
         const { builtinProviders } = useAgentSettingsStore.getState();
         const bp = builtinProviders.find((p) => p.id === builtinProviderId);
         if (!bp || !bp.apiKey) {
           accumulated = !bp
-            ? `**Error:** ${i18n.t('builtin.errorProviderNotFound')}`
-            : `**Error:** ${i18n.t('builtin.errorApiKeyEmpty')}`;
+            ? '**Error:** Provider not found.'
+            : '**Error:** API Key is empty.';
           updateLastMessage(accumulated);
           useAIStore.getState().setAbortController(null);
           setStreaming(false);
-          useAIStore.setState((s) => {
-            const msgs = [...s.messages];
-            const last = msgs.find((m) => m.id === assistantMsg.id);
-            if (last) {
-              last.content = accumulated;
-              last.isStreaming = false;
-            }
-            return { messages: msgs };
-          });
           return;
         }
-
-        useAIStore.getState().clearToolCallBlocks();
+        // Override model to clean name and provider to 'builtin' so streamChat
+        // attaches the API key and the server routes to streamViaBuiltin.
+        // Then fall through to the standard design/chat pipeline below.
+        const chatHistory = messages.map((m) => ({
+          role: m.role,
+          content: m.content,
+          ...(m.attachments?.length ? { attachments: m.attachments } : {}),
+        }));
+        let appliedCount = 0;
+        let isDesign = false;
         try {
-          // Use streamChat (via /api/ai/chat) instead of agent-native endpoint
-          const chatMessages = messages.map((m: ChatMessageType) => ({
-            role: m.role as 'user' | 'assistant',
-            content: m.content,
-          }));
-          chatMessages.push({ role: 'user', content: fullUserMessage });
-
-          const provider = 'builtin';
-          const sysPrompt = buildChatSystemPrompt(fullUserMessage);
-
-          for await (const chunk of streamChat(
-            sysPrompt,
-            chatMessages,
-            modelName,
-            {},
-            provider,
-            abortController.signal,
-          )) {
-            if (chunk.type === 'text') {
-              accumulated += chunk.content;
+          const classified = await classifyIntent(messageText, model, 'builtin');
+          let intent = classified.intent;
+          const { document: currentDoc } = useDocumentStore.getState();
+          const activePageId = useCanvasStore.getState().activePageId;
+          const pageChildren = getActivePageChildren(currentDoc, activePageId);
+          if (intent === 'modify' && pageChildren.length === 0) intent = 'new';
+          isDesign = intent === 'new' || intent === 'modify';
+          const isModification = intent === 'modify' && (hasSelection || pageChildren.length > 0);
+          if (isDesign) {
+            if (isModification) {
+              const { getNodeById, document: modDoc } = useDocumentStore.getState();
+              let modTargets: any[];
+              if (hasSelection) {
+                modTargets = selectedIds.map((id) => getNodeById(id)).filter(Boolean);
+              } else {
+                const frames = pageChildren.filter((n) => n.type === 'frame');
+                modTargets = frames.length > 0 ? [frames[frames.length - 1]] : [pageChildren[pageChildren.length - 1]];
+              }
+              accumulated = '<step title="Analyzing">Analyzing modification request...</step>';
               updateLastMessage(accumulated);
+              const { rawResponse, nodes } = await generateDesignModification(
+                modTargets, messageText, {
+                  variables: modDoc.variables,
+                  themes: modDoc.themes,
+                  designMd: useDesignMdStore.getState().designMd,
+                  model: modelName,
+                  provider: 'builtin',
+                },
+                abortController.signal,
+              );
+              accumulated = rawResponse;
+              updateLastMessage(accumulated);
+              appliedCount += extractAndApplyDesignModification(JSON.stringify(nodes));
+            } else {
+              const doc = useDocumentStore.getState().document;
+              const { rawResponse, nodes } = await generateDesign({
+                prompt: fullUserMessage,
+                model: modelName,
+                provider: 'builtin',
+                concurrency: 1,
+                context: {
+                  canvasSize: { width: 1200, height: 800 },
+                  documentSummary: hasSelection ? selectedIds.length + ' items selected' : 'Empty',
+                  variables: doc.variables,
+                  themes: doc.themes,
+                  designMd: useDesignMdStore.getState().designMd,
+                },
+              }, {
+                animated: true,
+                onApplyPartial: (partialCount: number) => { appliedCount += partialCount; },
+                onTextUpdate: (text: string) => {
+                  accumulated = text;
+                  updateLastMessage(text);
+                },
+              }, abortController.signal);
+              accumulated = rawResponse;
+              if (appliedCount === 0 && nodes.length > 0) {
+                animateNodesToCanvas(nodes);
+                appliedCount += nodes.length;
+              }
+            }
+          } else {
+            // Chat mode — just stream text
+            chatHistory.push({ role: 'user', content: fullUserMessage } as any);
+            const chatSystemPrompt = buildChatSystemPrompt(fullUserMessage);
+            for await (const chunk of streamChat(
+              chatSystemPrompt, chatHistory, modelName, {}, 'builtin', abortController.signal,
+            )) {
+              if (chunk.type === 'text') { accumulated += chunk.content; updateLastMessage(accumulated); }
+              else if (chunk.type === 'error') { accumulated += '\n\n**Error:** ' + chunk.content; updateLastMessage(accumulated); }
             }
           }
         } catch (error) {
           if (!abortController.signal.aborted) {
-            const errMsg = error instanceof Error ? error.message : 'Unknown error';
-            accumulated += `\n\n**Error:** ${errMsg}`;
+            accumulated += '\n\n**Error:** ' + (error instanceof Error ? error.message : String(error));
             updateLastMessage(accumulated);
           }
         } finally {
           useAIStore.getState().setAbortController(null);
           setStreaming(false);
         }
-
         useAIStore.setState((s) => {
           const msgs = [...s.messages];
           const last = msgs.find((m) => m.id === assistantMsg.id);
-          if (last) {
-            last.content = accumulated;
-            last.isStreaming = false;
-          }
+          if (last) { last.content = accumulated; last.isStreaming = false; }
           return { messages: msgs };
         });
         return;

@@ -17,9 +17,7 @@ extraResources:
     to: server
   - from: out/web/public
     to: public
-  - from: out/mcp-server.cjs
-    to: mcp-server.cjs
-  # CLI and agent-native removed in MinoPencil fork
+  # MCP server & CLI removed in MinoPencil fork
 
 mac:
   category: public.app-category.graphics-design

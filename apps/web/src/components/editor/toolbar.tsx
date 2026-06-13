@@ -15,6 +15,7 @@ import ToolButton from './tool-button';
 import ShapeToolDropdown from './shape-tool-dropdown';
 import { useCanvasStore } from '@/stores/canvas-store';
 import { useDocumentStore, generateId } from '@/stores/document-store';
+import StatusBar from './status-bar';
 import { parseSvgToNodes } from '@/utils/svg-parser';
 import { getCanvasSize } from '@/canvas/skia-engine-ref';
 import { useHistoryStore } from '@/stores/history-store';
@@ -351,6 +352,11 @@ export default function Toolbar() {
         onClose={() => setIconPickerOpen(false)}
         onSelect={handleIconSelect}
       />
+
+      {/* Zoom controls (moved from status bar) */}
+      <div className="mt-auto pt-2 border-t border-border/40 w-full flex justify-center">
+        <StatusBar />
+      </div>
     </div>
   );
 }

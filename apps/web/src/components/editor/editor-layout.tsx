@@ -3,7 +3,6 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import TopBar from './top-bar';
 import Toolbar from './toolbar';
 import BooleanToolbar from './boolean-toolbar';
-import StatusBar from './status-bar';
 import LayerPanel from '@/components/panels/layer-panel';
 import RightPanel from '@/components/panels/right-panel';
 import AIChatPanel, { AIChatMinimizedBar } from '@/components/panels/ai-chat-panel';
@@ -215,13 +214,10 @@ export default function EditorLayout() {
               {/* Floating UIKit browser panel */}
               {browserOpen && <ComponentBrowserPanel />}
 
-              {/* Bottom bar: minimized AI (left) + zoom controls (right) */}
-              <div className="absolute bottom-2 left-2 right-2 z-10 flex items-center justify-between pointer-events-none">
+              {/* Bottom bar: minimized AI button */}
+              <div className="absolute bottom-2 left-2 z-10 pointer-events-none">
                 <div className="pointer-events-auto">
                   <AIChatMinimizedBar />
-                </div>
-                <div className="pointer-events-auto">
-                  <StatusBar />
                 </div>
               </div>
 

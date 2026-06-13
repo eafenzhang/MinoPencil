@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import TopBar from './top-bar';
 import Toolbar from './toolbar';
@@ -30,6 +30,7 @@ import { useFileDrop } from '@/hooks/use-file-drop';
 import { initAppStorage } from '@/utils/app-storage';
 import { getRecentFiles } from '@/utils/recent-files';
 import SkiaCanvas from '@/canvas/skia/skia-canvas';
+import { WelcomeOverlay } from '@/components/onboarding/welcome-overlay';
 
 export default function EditorLayout() {
   const toggleMinimize = useAIStore((s) => s.toggleMinimize);
@@ -38,6 +39,8 @@ export default function EditorLayout() {
   const variablesPanelOpen = useCanvasStore((s) => s.variablesPanelOpen);
   const designMdPanelOpen = useCanvasStore((s) => s.designMdPanelOpen);
   // Figma import removed in MinoPencil fork
+  const canvasNodeCount = useCanvasStore((s) => s.selection.allIds?.length ?? 0);
+  const isCanvasEmpty = canvasNodeCount === 0;
   const browserOpen = useUIKitStore((s) => s.browserOpen);
   const saveDialogOpen = useDocumentStore((s) => s.saveDialogOpen);
   const closeSaveDialog = useCallback(() => {
@@ -226,6 +229,9 @@ export default function EditorLayout() {
 
               {/* Expanded AI panel (floating, draggable) */}
               <AIChatPanel />
+
+              {/* Welcome overlay when canvas is empty */}
+              {isCanvasEmpty && <WelcomeOverlay />}
             </div>
             {hasSelection && <RightPanel />}
           </div>

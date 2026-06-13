@@ -577,18 +577,29 @@ export function useChatHandlers() {
 
         useAIStore.getState().clearToolCallBlocks();
         try {
-          const result = await runAgentStream(
-            assistantMsg.id,
-            {
-              providerType: bp.type === 'anthropic' ? 'anthropic' : 'openai-compat',
-              apiKey: bp.apiKey,
-              model: modelName,
-              baseURL: bp.baseURL,
-              maxContextTokens: bp.maxContextTokens,
-            },
-            abortController,
-          );
-          if (result) accumulated = result;
+          // Use streamChat (via /api/ai/chat) instead of agent-native endpoint
+          const chatMessages = messages.map((m: ChatMessageType) => ({
+            role: m.role as 'user' | 'assistant',
+            content: m.content,
+          }));
+          chatMessages.push({ role: 'user', content: fullUserMessage });
+
+          const provider = bp.type === 'anthropic' ? 'anthropic' : 'openai-compat';
+          const sysPrompt = buildChatSystemPrompt(fullUserMessage);
+
+          for await (const chunk of streamChat(
+            sysPrompt,
+            chatMessages,
+            modelName,
+            {},
+            provider,
+            abortController.signal,
+          )) {
+            if (chunk.type === 'text') {
+              accumulated += chunk.content;
+              updateLastMessage(accumulated);
+            }
+          }
         } catch (error) {
           if (!abortController.signal.aborted) {
             const errMsg = error instanceof Error ? error.message : 'Unknown error';

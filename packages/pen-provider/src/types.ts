@@ -47,6 +47,13 @@ export const KNOWN_CLIS: Record<string, SuggestedProvider> = {
     authType: 'auth_token',
     modelMapping: { default: 'claude-sonnet-4-20250514' },
   },
+  opencode: {
+    id: 'opencode-go',
+    name: 'OpenCode CLI',
+    baseUrl: 'https://api.opencode.ai/anthropic',
+    authType: 'auth_token',
+    modelMapping: { default: 'claude-sonnet-4-20250514' },
+  },
   gemini: {
     id: 'gemini',
     name: 'Gemini CLI',

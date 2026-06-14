@@ -58,6 +58,8 @@ function collectSearchDirs(): string[] {
     join(home, 'scoop', 'shims'),
     join(home, '.cargo', 'bin'),
     join(home, '.bun', 'bin'),
+    join(home, '.myagents', 'npm-global'),  // MyAgents bundled npm global
+    join(home, '.myagents', 'bin'),          // MyAgents CLI dir
     '/usr/local/bin',
     '/opt/homebrew/bin',
   ];

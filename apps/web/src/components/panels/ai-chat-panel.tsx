@@ -115,6 +115,8 @@ export default function AIChatPanel() {
 
     for (const bp of builtinProviders) {
       if (!bp.enabled || !bp.apiKey) continue;
+      // Skip CLI-detected placeholders that haven't been configured yet
+      if (bp.apiKey === '__cli_detected__') continue;
       const providerType: AIProviderType = bp.type === 'anthropic' ? 'anthropic' : 'openai';
       groups.push({
         provider: providerType,

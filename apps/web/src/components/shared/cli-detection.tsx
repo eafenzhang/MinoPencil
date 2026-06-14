@@ -55,15 +55,17 @@ export function CliDetectionSection() {
   const handleApplySuggestion = useCallback(async (suggestion: ProviderSuggestion) => {
     const { useAgentSettingsStore } = await import('@/stores/agent-settings-store');
     const store = useAgentSettingsStore.getState();
+    // For myagents/CLI-based providers use placeholder so model list shows them
+    const isCliBased = !suggestion.baseUrl || suggestion.id === 'myagents-builtin';
     store.addBuiltinProvider({
       displayName: suggestion.name,
       type: suggestion.authType === 'api_key' ? 'openai-compat' : 'anthropic',
-      apiKey: '',
+      apiKey: isCliBased ? '__cli_detected__' : '',
       model: suggestion.modelMapping?.default || 'claude-sonnet-4-20250514',
       baseURL: suggestion.baseUrl || undefined,
       enabled: true,
     });
-    // Open settings so user can fill in the API key
+    store.persist();
     store.setDialogOpen(true);
   }, []);
 

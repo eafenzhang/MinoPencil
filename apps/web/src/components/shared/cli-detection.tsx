@@ -14,6 +14,7 @@ interface ProviderSuggestion {
   baseUrl: string;
   authType: string;
   cliSource?: string;
+  modelMapping?: Record<string, string>;
 }
 
 /**
@@ -51,12 +52,19 @@ export function CliDetectionSection() {
     }
   }, []);
 
-  const handleApplySuggestion = useCallback((suggestion: ProviderSuggestion) => {
-    window.dispatchEvent(
-      new CustomEvent('minopencil:apply-provider-suggestion', {
-        detail: suggestion,
-      }),
-    );
+  const handleApplySuggestion = useCallback(async (suggestion: ProviderSuggestion) => {
+    const { useAgentSettingsStore } = await import('@/stores/agent-settings-store');
+    const store = useAgentSettingsStore.getState();
+    store.addBuiltinProvider({
+      displayName: suggestion.name,
+      type: suggestion.authType === 'api_key' ? 'openai-compat' : 'anthropic',
+      apiKey: '',
+      model: suggestion.modelMapping?.default || 'claude-sonnet-4-20250514',
+      baseURL: suggestion.baseUrl || undefined,
+      enabled: true,
+    });
+    // Open settings so user can fill in the API key
+    store.setDialogOpen(true);
   }, []);
 
   return (

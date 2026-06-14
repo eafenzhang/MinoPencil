@@ -202,7 +202,7 @@ export default function Toolbar() {
   );
 
   return (
-    <div className="absolute top-2 left-2 z-10 bg-card border border-border rounded-xl flex flex-row items-center px-1.5 py-1 gap-0.5 shadow-lg">
+    <div className="absolute top-2 left-1/2 -translate-x-1/2 z-10 bg-card border border-border rounded-xl flex flex-row items-center px-1.5 py-1 gap-0.5 shadow-lg max-w-[95vw]">
       <ToolButton
         tool="select"
         icon={<MousePointer2 size={16} strokeWidth={1.5} />}
@@ -240,7 +240,7 @@ export default function Toolbar() {
             <Undo2 size={16} strokeWidth={1.5} />
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="right">
+        <TooltipContent side="bottom">
           {t('toolbar.undo')}
           <kbd className="ml-1.5 inline-flex h-4 items-center rounded border border-border/50 bg-muted px-1 font-mono text-[10px] text-muted-foreground">
             {'\u2318'}Z
@@ -253,7 +253,7 @@ export default function Toolbar() {
             <Redo2 size={16} strokeWidth={1.5} />
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="right">
+        <TooltipContent side="bottom">
           {t('toolbar.redo')}
           <kbd className="ml-1.5 inline-flex h-4 items-center rounded border border-border/50 bg-muted px-1 font-mono text-[10px] text-muted-foreground">
             {'\u2318\u21e7'}Z
@@ -279,7 +279,7 @@ export default function Toolbar() {
             <Braces size={16} strokeWidth={1.5} />
           </button>
         </TooltipTrigger>
-        <TooltipContent side="right">
+        <TooltipContent side="bottom">
           {t('toolbar.variables')}
           <kbd className="ml-1.5 inline-flex h-4 items-center rounded border border-border/50 bg-muted px-1 font-mono text-[10px] text-muted-foreground">
             {'\u2318\u21e7'}V
@@ -304,7 +304,7 @@ export default function Toolbar() {
             <BookOpen size={16} strokeWidth={1.5} />
           </button>
         </TooltipTrigger>
-        <TooltipContent side="right">
+        <TooltipContent side="bottom">
           {t('toolbar.designSystem')}
           <kbd className="ml-1.5 inline-flex h-4 items-center rounded border border-border/50 bg-muted px-1 font-mono text-[10px] text-muted-foreground">
             {'\u2318\u21e7'}D
@@ -329,7 +329,7 @@ export default function Toolbar() {
             <LayoutGrid size={16} strokeWidth={1.5} />
           </button>
         </TooltipTrigger>
-        <TooltipContent side="right">
+        <TooltipContent side="bottom">
           {t('toolbar.uikitBrowser')}
           <kbd className="ml-1.5 inline-flex h-4 items-center rounded border border-border/50 bg-muted px-1 font-mono text-[10px] text-muted-foreground">
             {'\u2318\u21e7'}K

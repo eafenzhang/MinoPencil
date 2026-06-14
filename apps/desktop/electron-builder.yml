@@ -3,7 +3,7 @@ productName: MinoPencil
 copyright: Copyright (c) 2024-2026 MinoPencil contributors
 
 directories:
-  output: out/release
+  output: out/release-v2
   buildResources: apps/desktop/build
 
 files:

@@ -18,7 +18,6 @@ import OpenCodeLogo from '@/components/icons/opencode-logo';
 import CopilotLogo from '@/components/icons/copilot-logo';
 import GeminiLogo from '@/components/icons/gemini-logo';
 import FileMenu from '@/components/shared/file-menu';
-import LanguageSelector from '@/components/shared/language-selector';
 import { GitButton } from '@/components/editor/git-button';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -408,10 +407,6 @@ export default function TopBar() {
       {/* Right section */}
       <div className="flex items-center gap-0.5 app-region-no-drag electron-win-controls-pad">
         <AgentStatusButton />
-
-        <div className="w-px h-3.5 bg-border/60 mx-1" />
-
-        <LanguageSelector />
 
         <Tooltip>
           <TooltipTrigger asChild>

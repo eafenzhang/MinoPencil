@@ -32,6 +32,10 @@ export interface ProviderConfig {
   updatedAt: number;
 }
 
+/**
+ * Known Agent CLIs and their corresponding provider suggestions.
+ * Scan your PATH and we'll find whatever you've got installed.
+ */
 export const KNOWN_CLIS: Record<string, SuggestedProvider> = {
   claude: {
     id: 'anthropic-sub',
@@ -60,5 +64,26 @@ export const KNOWN_CLIS: Record<string, SuggestedProvider> = {
     baseUrl: '',
     authType: 'api_key',
     modelMapping: { default: 'gemini-2.0-flash' },
+  },
+  myagents: {
+    id: 'myagents-builtin',
+    name: 'MyAgents (built-in runtime)',
+    baseUrl: '',
+    authType: 'auth_token',
+    modelMapping: { default: 'claude-sonnet-4-20250514' },
+  },
+  copilot: {
+    id: 'github-copilot',
+    name: 'GitHub Copilot CLI',
+    baseUrl: '',
+    authType: 'auth_token',
+    modelMapping: { default: 'claude-sonnet-4-20250514' },
+  },
+  aider: {
+    id: 'aider',
+    name: 'Aider AI CLI',
+    baseUrl: '',
+    authType: 'api_key',
+    modelMapping: { default: 'claude-sonnet-4-20250514' },
   },
 };

@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useAgentSettingsStore } from '@/stores/agent-settings-store';
 import { BuiltinProvidersSection } from './builtin-provider-settings';
-import { CliDetectionSection } from './cli-detection';
 import type { AIProviderType, GroupedModel } from '@/types/agent-settings';
 import ClaudeLogo from '@/components/icons/claude-logo';
 import OpenAILogo from '@/components/icons/openai-logo';
@@ -309,44 +308,17 @@ function ProviderCard({ type }: { type: AIProviderType }) {
 export function ProvidersTab() {
   const { t } = useTranslation();
   return (
-    <div className="space-y-6">
-      {/* CLI Detection */}
-      <div className="rounded-xl border border-border/60 bg-card overflow-hidden">
-        <div className="px-4 py-3 border-b border-border/40 bg-secondary/20">
-          <h3 className="text-[13px] font-semibold text-foreground">CLI 检测</h3>
-        </div>
-        <div className="px-4 py-3">
-          <CliDetectionSection />
-        </div>
+    <div>
+      <div className="mb-6">
+        <BuiltinProvidersSection />
       </div>
-
-      {/* Built-in Providers */}
-      <div className="rounded-xl border border-border/60 bg-card overflow-hidden">
-        <div className="px-4 py-3 border-b border-border/40 bg-secondary/20">
-          <h3 className="text-[13px] font-semibold text-foreground">{t('builtin.title', 'API Key 供应商')}</h3>
-        </div>
-        <div className="px-4 py-3">
-          <BuiltinProvidersSection />
-        </div>
-      </div>
-
-      {/* Agent CLIs */}
-      <div className="rounded-xl border border-border/60 bg-card overflow-hidden">
-        <div className="px-4 py-3 border-b border-border/40 bg-secondary/20">
-          <h3 className="text-[13px] font-semibold text-foreground">{t('settings.agents', 'Agent CLI')}</h3>
-        </div>
-        <div className="px-4 py-3">
-          <p className="text-[11px] text-muted-foreground mb-3 leading-relaxed">
-            {t('settings.agentsDesc', '连接本地安装的 Agent CLI 工具，自动发现可用模型。')}
-          </p>
-          <div className="space-y-1">
-            <ProviderCard type="anthropic" />
-            <ProviderCard type="openai" />
-            <ProviderCard type="opencode" />
-            <ProviderCard type="copilot" />
-            <ProviderCard type="gemini" />
-          </div>
-        </div>
+      <h3 className="text-[15px] font-semibold text-foreground mb-4">{t('settings.agents')}</h3>
+      <div className="space-y-1">
+        <ProviderCard type="anthropic" />
+        <ProviderCard type="openai" />
+        <ProviderCard type="opencode" />
+        <ProviderCard type="copilot" />
+        <ProviderCard type="gemini" />
       </div>
     </div>
   );

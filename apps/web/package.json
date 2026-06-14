@@ -8,7 +8,6 @@
     "@minopencil/pen-core": "*",
     "@minopencil/pen-engine": "*",
     "@minopencil/pen-mcp": "*",
-    "@minopencil/pen-provider": "*",
     "@minopencil/pen-react": "*",
     "@minopencil/pen-renderer": "*",
     "@minopencil/pen-types": "*",

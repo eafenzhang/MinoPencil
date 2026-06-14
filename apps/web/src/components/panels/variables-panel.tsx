@@ -109,7 +109,7 @@ export default function VariablesPanel() {
   return (
     <div
       ref={panelRef}
-      className="absolute left-2 top-12 z-20 flex flex-col select-none"
+      className="absolute left-14 top-2 z-20 flex flex-col select-none"
       style={{ width: panelWidth, height: panelHeight }}
     >
       {/* Background layer with rounded corners */}

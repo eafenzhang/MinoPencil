@@ -60,7 +60,7 @@ export default function BooleanToolbar() {
   if (!show) return null;
 
   return (
-    <div className="absolute top-12 left-2 z-10 bg-card border border-border rounded-xl flex items-center py-1 px-1 gap-0.5 shadow-lg">
+    <div className="absolute top-2 left-14 z-10 bg-card border border-border rounded-xl flex items-center py-1 px-1 gap-0.5 shadow-lg">
       {OPS.map((op) => (
         <Tooltip key={op.type}>
           <TooltipTrigger asChild>

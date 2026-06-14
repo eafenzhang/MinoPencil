@@ -159,7 +159,7 @@ export default function ShapeToolDropdown({
             {displayIcon}
           </button>
         </TooltipTrigger>
-        <TooltipContent side="bottom">{t('shapes.shapeTools')}</TooltipContent>
+        <TooltipContent side="right">{t('shapes.shapeTools')}</TooltipContent>
       </Tooltip>
 
       {/* Chevron button below — opens dropdown */}
